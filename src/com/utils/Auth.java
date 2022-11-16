@@ -1,0 +1,16 @@
+package com.utils;
+
+import com.entity.NhanVien;
+
+public class Auth {
+    private static NhanVien user = null;
+    public static void clear() {
+        Auth.user = null;
+    }
+    public static Boolean isLogin(){
+        return Auth.user != null;
+    }
+    public static boolean isVaiTro() {
+        return Auth.isLogin() && Auth.user.getVaiTro();
+    }
+}
