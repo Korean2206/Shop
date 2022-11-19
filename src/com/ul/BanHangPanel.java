@@ -5,6 +5,10 @@
 
 package com.ul;
 
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author korea
@@ -14,6 +18,7 @@ public class BanHangPanel extends javax.swing.JPanel {
     /** Creates new form BanHangPanel */
     public BanHangPanel() {
         initComponents();
+        init();
     }
 
     /** This method is called from within the constructor to
@@ -72,14 +77,14 @@ public class BanHangPanel extends javax.swing.JPanel {
         pnlTrangThaiHoaDon5Layout.setVerticalGroup(
             pnlTrangThaiHoaDon5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTrangThaiHoaDon5Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
 
         pnlTaoHD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlTaoHD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlTaoHD.add(pnlHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 520, 440));
+        pnlTaoHD.add(pnlHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 500, 470));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,22 +96,48 @@ public class BanHangPanel extends javax.swing.JPanel {
                     .addComponent(pnlTrangThaiHoaDon5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlTaoHD, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(pnlTaoHD, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlTaoHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlTaoHD, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlTrangThaiHoaDon5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                        .addComponent(pnlTrangThaiHoaDon5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void init() {
+        taoHoaDon();
+
+    }
+    private void taoHoaDon() {
+        JPopupMenu pmnHD = new JPopupMenu();
+        JMenuItem mniTaoHD = new JMenuItem("Tạo hóa đơn");
+        pmnHD.add(mniTaoHD);
+        pnlHoaDon.setVisible(false);
+        pnlTaoHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e){
+                if(SwingUtilities.isRightMouseButton(e)){
+                    pmnHD.show(pnlTaoHD,e.getX(),e.getY());
+                }
+            }
+        });
+
+        mniTaoHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e){
+                pnlHoaDon.setVisible(true);
+            }
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
