@@ -26,6 +26,8 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgSex = new javax.swing.ButtonGroup();
+        btgVaiTro = new javax.swing.ButtonGroup();
         jPanel8 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -84,12 +86,16 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel17.setText("Vai trò :");
 
+        btgVaiTro.add(rdoNhanVien);
         rdoNhanVien.setText("Nhân viên");
 
+        btgVaiTro.add(rdoQuanLy);
         rdoQuanLy.setText("Quản lý");
 
+        btgSex.add(rdoNam);
         rdoNam.setText("Nam");
 
+        btgSex.add(rdoNu);
         rdoNu.setText("Nữ");
 
         btnThem.setText("Thêm");
@@ -289,6 +295,8 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgSex;
+    private javax.swing.ButtonGroup btgVaiTro;
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThem;

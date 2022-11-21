@@ -3,7 +3,7 @@ package com.utils;
 import com.entity.NhanVien;
 
 public class Auth {
-    private static NhanVien user = null;
+    public static NhanVien user = null;
     public static void clear() {
         Auth.user = null;
     }

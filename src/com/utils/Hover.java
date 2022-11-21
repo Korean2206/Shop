@@ -1,6 +1,8 @@
 package com.utils;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import java.awt.Color;
 import java.awt.Cursor;
 
@@ -8,6 +10,9 @@ public class Hover {
 
     private Color exitColor = new Color(0,0,0);
     private Color enteredColor = new Color(255,204,204);
+    private Color defaultColor = new Color(255, 204, 204);
+    private Color clickedColor = new Color(204, 255, 0);
+    private Color white = new Color(255, 255, 255);
     public void changeCursor(Boolean b,JLabel l) {
         if(b){
             l.setForeground(enteredColor);
@@ -15,6 +20,15 @@ public class Hover {
         }
         else {
             l.setForeground(exitColor);
+        }
+    }
+    public void changeCursorClick(Boolean b,JPanel l) {
+        if(b){
+            l.setBackground(clickedColor);
+            l.setForeground(white);
+        }
+        else {
+            l.setBackground(defaultColor);
         }
     }
 

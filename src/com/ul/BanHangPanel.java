@@ -5,7 +5,12 @@
 
 package com.ul;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JDialog;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
@@ -131,12 +136,14 @@ public class BanHangPanel extends javax.swing.JPanel {
             }
         });
 
-        mniTaoHD.addMouseListener(new java.awt.event.MouseAdapter() {
+        mniTaoHD.addActionListener(new ActionListener() { 
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent e){
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
                 pnlHoaDon.setVisible(true);
+                
             }
-        });
+         });
     }
 
 
