@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 import com.DAO.NhanVienDAO;
@@ -433,6 +434,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
     private void init() {
         fillTable();
         updateStatus();
+        // fillCBOLoc();
 
     }
 
@@ -445,6 +447,13 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
         btnXoa.setEnabled(edit);
     }
 
+    // private void fillCBOLoc() {
+    //     String list[] = {"Nam","Nữ","Quản lý","Nhân viên","Năm sinh"};
+    //     cboNhanVien.removeAllItems();
+    //     for(String str : list) {
+    //         cboNhanVien.addItem(str);
+    //     }
+    // }
     private void fillTable() {
         String header[] = {"Mã NV", "Họ và tên", "Giới tính","Ngày sinh", "Vai trò"};
         DefaultTableModel model = new DefaultTableModel(header, 0);

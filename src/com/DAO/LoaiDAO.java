@@ -19,7 +19,7 @@ public class LoaiDAO extends ShopFrameDAO<Loai,String> {
     public void insert(Loai entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlUpdate,entity.getMaLoai(),entity.getTenLoai(),entity.getDanhCho());
+            Jdbc.update(sqlInsert,entity.getMaLoai(),entity.getTenLoai(),entity.getDanhCho());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
