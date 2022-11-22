@@ -10,7 +10,7 @@ public class Auth {
     public static Boolean isLogin(){
         return Auth.user != null;
     }
-    public static boolean isVaiTro() {
+    public static boolean isManager() {
         return Auth.isLogin() && Auth.user.getVaiTro();
     }
 }

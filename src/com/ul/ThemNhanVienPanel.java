@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.DAO.NhanVienDAO;
 import com.entity.NhanVien;
+import com.utils.Auth;
 import com.utils.Message;
 import com.utils.XDate;
 
@@ -529,14 +530,14 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
     }
 
     private void delete() {
-//        if(!Auth.isManager()){
-//            Message.alert(this, "Bạn không có quyền xóa Nhân viên!");
-//        }
-//        else{
+       if(!Auth.isManager()){
+           Message.alert(this, "Bạn không có quyền xóa Nhân viên!");
+       }
+       else{
             NhanVien nv = getForm();
-//            if(Auth.user.getMaNV().equals(nv.getMaNV())){
-//                Message.alert(this, "Bạn không được xóa chính bạn!");
-//            }
+           if(Auth.user.getMaNV().equals(nv.getMaNV())){
+               Message.alert(this, "Bạn không được xóa chính bạn!");
+           }
             if(Message.confirm(this, "Bạn có muốn xóa hay không?")){
                 try {
                     dao.delete(nv.getMaNV());
@@ -548,7 +549,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
                     Message.alert(this, "Xóa thất bại!");
                     e.printStackTrace();
                 }
-//            }
+           }
         }
     }
 
