@@ -20,7 +20,7 @@ public class NhanVienDAO extends ShopFrameDAO<NhanVien,String> {
     public void insert(NhanVien entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlUpdate,entity.getMaNV(),entity.getPassword(),entity.getTen(),entity.getGioiTinh(),entity.getNgaySinh(),entity.getVaiTro(),entity.getDiaChi(),entity.getSdt(),entity.getEmail());
+            Jdbc.update(sqlInsert,entity.getMaNV(),entity.getPassword(),entity.getTen(),entity.getGioiTinh(),entity.getNgaySinh(),entity.getVaiTro(),entity.getDiaChi(),entity.getSdt(),entity.getEmail());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -40,7 +40,7 @@ public class NhanVienDAO extends ShopFrameDAO<NhanVien,String> {
     }
 
     @Override
-    public void delete(NhanVien entity, String key) {
+    public void delete(String key) {
         // TODO Auto-generated method stub
         try {
             Jdbc.update(sqlDelete,key);

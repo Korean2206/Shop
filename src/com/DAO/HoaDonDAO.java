@@ -39,7 +39,7 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
     }
 
     @Override
-    public void delete(HoaDon entity, Integer key) {
+    public void delete(Integer key) {
         // TODO Auto-generated method stub
         try {
             Jdbc.update(sqlDelete,key);

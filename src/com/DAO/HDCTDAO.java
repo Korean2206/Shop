@@ -40,7 +40,7 @@ public class HDCTDAO extends ShopFrameDAO<HDCT,Integer> {
     }
 
     @Override
-    public void delete(HDCT entity, Integer key) {
+    public void delete(Integer key) {
         // TODO Auto-generated method stub
         try {
             Jdbc.update(sqlDelete, key);

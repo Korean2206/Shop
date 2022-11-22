@@ -40,7 +40,7 @@ public class KhachHangDAO extends ShopFrameDAO<KhachHang,String>{
     }
 
     @Override
-    public void delete(KhachHang entity, String key) {
+    public void delete( String key) {
         // TODO Auto-generated method stub
         try {
             Jdbc.update(sqlDelete,key);

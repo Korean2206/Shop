@@ -10,7 +10,7 @@ public class Jdbc {
     private static final String user = "sa";
     private static final String password = "1234";
     private static final String url ="jdbc:sqlserver://localhost:1433;databaseName=SecondHandShop";
-    private static final  String driver ="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private static final String driver ="com.microsoft.sqlserver.jdbc.SQLServerDriver";
     static Connection conn;
     static {
         try {
@@ -41,7 +41,7 @@ public class Jdbc {
         PreparedStatement stmt = Jdbc.getStmt(sql,args);
         try{
             try{
-                stmt.executeUpdate(sql);
+                stmt.executeUpdate();
             }finally{
                 stmt.getConnection().close();
             }

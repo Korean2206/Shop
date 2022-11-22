@@ -38,7 +38,7 @@ public class LoaiDAO extends ShopFrameDAO<Loai,String> {
     }
 
     @Override
-    public void delete(Loai entity, String key) {
+    public void delete( String key) {
         // TODO Auto-generated method stub
         try {
             Jdbc.update(sqlDelete, key);

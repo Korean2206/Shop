@@ -40,7 +40,7 @@ public class SanPhamDAO extends ShopFrameDAO<SanPham,String> {
     }
 
     @Override
-    public void delete(SanPham entity, String key) {
+    public void delete( String key) {
         // TODO Auto-generated method stub
         try {
             Jdbc.update(sqlDelete,key);
