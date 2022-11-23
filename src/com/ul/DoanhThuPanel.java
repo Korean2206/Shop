@@ -4,6 +4,7 @@
  */
 package com.ul;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -12,6 +13,8 @@ import javax.swing.table.DefaultTableModel;
 import com.DAO.LoaiDAO;
 import com.DAO.ThongKeDAO;
 import com.entity.Loai;
+import com.utils.Message;
+import com.utils.XDate;
 
 /**
  *
@@ -221,6 +224,11 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         jLabel3.setText("Lọc doanh thu theo loại :");
 
         cboLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboLoai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboLoaiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -302,29 +310,68 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cboLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiActionPerformed
+        // TODO add your handling code here:
+        fillTable();
+    }//GEN-LAST:event_cboLoaiActionPerformed
+
     private void init() {
-        // fillCBO();
-        // fillTable();
+        fillCBO();
+        tienHN();
+        fillTable();
+        cboLoai.setSelectedIndex(-1);
     }
 
     LoaiDAO daoLoai = new LoaiDAO();
     private void fillCBO() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoai.getModel();
+        model.removeAllElements();
         List<Loai> list = daoLoai.selectAll();
         for(Loai l : list) {
-            cboLoai.addItem(l.getTenLoai());
+            model.addElement(l);
         }
+        
     }
     ThongKeDAO daoTK = new ThongKeDAO();
     private void fillTable() {
-        DefaultTableModel model = (DefaultTableModel) tblDoanhThu.getModel();
+        String header[] = { "Mã Loại","Tên Loại","Đã bán", "Doanh thu"};
+        DefaultTableModel model = new DefaultTableModel(header, 0);
+        tblDoanhThu.setModel(model);
         model.setRowCount(0);
-        String maLoai = (String) cboLoai.getSelectedItem();
-        List<Object[]> list = daoTK.getDoanhThuTheoMaLoai(maLoai);
-        for(Object[] o :list) {
-            model.addRow(o);
+        Loai loai = (Loai) cboLoai.getSelectedItem();
+        try {
+            List<Object[]> list;
+            if(loai != null){
+                list= daoTK.getDoanhThuTheoMaLoai(loai.getMaLoai());
+                
+            }else {
+                list= daoTK.getDoanhThuTheoMaLoai("");
+
+            }
+            for(Object[] o : list) {
+                model.addRow(o);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Message.alert(this, "Lỗi dữ liệu");
+
         }
         
+        
+    }
+    private void tienHN() {
+        Date currentDate = new Date();
+        try {
+            
+            List<Object[]> list = daoTK.getDoanhThuTheoTG(XDate.toDate("2022-11-15","dd-MM-yyyy"), XDate.toDate("2022-11-15","dd-MM-yyyy"));
+            lblTienHN.setText(list.get(1).toString());
+            lblDaBanHN.setText(list.get(0).toString());
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

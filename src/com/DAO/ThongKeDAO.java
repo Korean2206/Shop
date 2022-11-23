@@ -29,12 +29,12 @@ public class ThongKeDAO {
         }
     }
     public List<Object[]> getDoanhThuTheoTG(Date from, Date to) {
-        String sql = "{CALL sp_doanhThuTheoTG(?)}";
-        String[] columns = {"tongTien","daBan"};
+        String sql = "{CALL sp_doanhThuTheoTG(?,?)}";
+        String[] columns = {"daBan","doanhThu"};
         return this.getListofArrayList(sql, columns, from,to);
     }
     public List<Object[]> getDoanhThuTheoMaLoai(String maLoai){
-        String sql = "{CALL sp_doanhThuTheoMaLoai}";
+        String sql = "{CALL sp_doanhThuTheoMaLoai(?)}";
         String[] columns = {"MaLoai","TenLoai","SanPhamDaBan","DoanhThu"};
         return this.getListofArrayList(sql,columns,maLoai);
     }

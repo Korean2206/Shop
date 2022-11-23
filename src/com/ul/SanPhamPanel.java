@@ -381,7 +381,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     private void cboMaLoaiActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cboMaLoaiActionPerformed
         // TODO add your handling code here:
-        System.out.println(cboMaLoai.getSelectedItem());
+        
     }// GEN-LAST:event_cboMaLoaiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -422,8 +422,6 @@ public class SanPhamPanel extends javax.swing.JPanel {
     int row = -1;
 
     private void init() {
-        // SanPham sp = new SanPham();
-        // list.add(sp);
         this.fillTable();
         this.row = -1;
         this.updateStatus();
@@ -463,7 +461,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
         txtMaSP.setText(sp.getMaSP());
         txtTenSP.setText(sp.getTenSP());
         if(sp.getMaLoai() != null){
-            cboMaLoai.setSelectedItem(daoLoai.selectByID(sp.getMaLoai()));
+            cboMaLoai.getModel().setSelectedItem(daoLoai.selectByID(sp.getMaLoai()));
             cboMaLoai.setToolTipText(sp.getMaLoai() + "");
         }
         else {
