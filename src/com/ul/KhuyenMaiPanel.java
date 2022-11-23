@@ -4,6 +4,7 @@
  */
 package com.ul;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import com.DAO.LoaiDAO;
 import com.entity.KhuyenMai;
 import com.entity.Loai;
 import com.utils.Auth;
+import com.utils.Jdbc;
 import com.utils.Message;
 
 /**
@@ -316,6 +318,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
+        TimKiem();
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void cboKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboKMActionPerformed
@@ -356,7 +359,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTenKM;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
-    KhuyenMaiDAO dao = new KhuyenMaiDAO();
+    KhuyenMaiDAO daoKM = new KhuyenMaiDAO();
     private int row = -1;
 
     void init() {
@@ -371,7 +374,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
             String header[] = {"Mã KM", "Tên KM","Mã Loại KM", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị khuyến mãi"};
             DefaultTableModel model = new DefaultTableModel(header, 0);
             tblKhuyenMai.setModel(model);
-            List<KhuyenMai> list = dao.selectAll();
+            List<KhuyenMai> list = daoKM.selectAll();
             for (KhuyenMai km : list) {
                 Object[] row = {
                     km.getMaKM(),
@@ -400,7 +403,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
     private void insert() {
         KhuyenMai model = getForm();
         try {
-            dao.insert(model);
+            daoKM.insert(model);
             this.fillTable();
             this.clearForm();
             Message.alert(this, "Thêm dữ liệu thành công");
@@ -413,13 +416,13 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
     private void delete() {
         KhuyenMai model = getForm();
         try {
-            dao.delete(model.getMaKM());
+            daoKM.delete(model.getMaKM());
             this.fillTable();
             this.clearForm();
-            Message.alert(this, "Cập nhật thành công");
+            Message.alert(this, "Xoá thành công");
         } catch (Exception e) {
             // TODO: handle exception
-            Message.alert(this, "Cập nhật thất bại");
+            Message.alert(this, "Xóa thất bại");
             e.printStackTrace();
         }
     }
@@ -427,7 +430,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
     private void update() {
         KhuyenMai model = getForm();
         try {
-            dao.update(model);
+            daoKM.update(model);
             this.fillTable();
             this.clearForm();
             Message.alert(this, "Cập nhật thành công");
@@ -446,7 +449,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
 
     private void edit() {
         String maKM = (String) tblKhuyenMai.getValueAt(row, 0);
-        KhuyenMai km = dao.selectByID(maKM);
+        KhuyenMai km = daoKM.selectByID(maKM);
         this.setForm(km);
         this.updateStatus();
     }
@@ -466,7 +469,20 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
     }
 
     private void TimKiem() {
-
+        String header[] = {"Mã KM", "Tên KM","Mã Loại KM", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị khuyến mãi"};
+        DefaultTableModel model = new DefaultTableModel(header, 0);
+        tblKhuyenMai.setModel(model);
+        List<KhuyenMai> list = daoKM.selectByName("%" + txtTimKiem.getText() + "%");
+        for (KhuyenMai km : list) {
+            Object[] row = {
+                km.getMaKM(),
+                km.getTenKM(),
+                km.getMaLoaiKM(),
+                km.getNgayBatDau(),
+                km.getNgayKetThuc(),
+                km.getPhanTram()};
+            model.addRow(row);
+        }
     }
 
     private void setForm(KhuyenMai km) {
@@ -487,6 +503,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
 
     private void updateStatus() {
         boolean edit = (this.row >= 0);
+        txtMaKM.setEditable(!edit);
         btnThem.setEnabled(!edit);
         btnXoa.setEnabled(!edit);
         btnCapNhat.setEnabled(edit);

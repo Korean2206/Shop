@@ -11,7 +11,7 @@ import com.utils.Jdbc;
 public class KhuyenMaiDAO extends ShopFrameDAO<KhuyenMai,String>{
 
     private final String sqlInsert = "INSERT INTO KhuyenMai values(?,?,?,?,?,?,?);";
-    private final String sqlUpdate = "UPDATE KhuyenMai set TenKM=?,MaLoaiKM=?NgayBatDau=?,NgayKetThuc=?,PhanTramKM=?,MaNV=? where MaKM =?";
+    private final String sqlUpdate = "UPDATE KhuyenMai set TenKM=?,MaLoaiKM=?,NgayBatDau=?,NgayKetThuc=?,PhanTramKM=?,MaNV=? where MaKM =?";
     private final String sqlDelete = "DELETE FROM KhuyenMai where MaKM =?";
     private final String sqlSelectAll = "SELECT * FROM KhuyenMai ";
     private final String sqlSelectByID = "SELECT * FROM KhuyenMai where MaKM =?";
@@ -65,6 +65,14 @@ public class KhuyenMaiDAO extends ShopFrameDAO<KhuyenMai,String>{
         List<KhuyenMai> list = new ArrayList<KhuyenMai>();
         list = selectBySQL(sqlSelectByID, key);
         return list.get(0);
+    }
+
+    public List<KhuyenMai> selectByName(String key) {
+        // TODO Auto-generated method stub
+        String sql = "select * from khuyenMai where tenKM like ?";
+        List<KhuyenMai> list = new ArrayList<KhuyenMai>();
+        list = selectBySQL(sql, key);
+        return list;
     }
 
     @Override

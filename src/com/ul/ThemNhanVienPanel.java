@@ -16,6 +16,9 @@ import com.entity.NhanVien;
 import com.utils.Auth;
 import com.utils.Message;
 import com.utils.XDate;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -73,7 +76,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
         tblNhanVien = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
-        cboNhanVien = new javax.swing.JComboBox<>();
+        cboLoc = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         btnTimKiem = new javax.swing.JButton();
 
@@ -283,7 +286,12 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Tìm kiếm :");
 
-        cboNhanVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboLoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboLoc.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboLocItemStateChanged(evt);
+            }
+        });
 
         jLabel5.setText("Lọc nhân viên :");
 
@@ -301,23 +309,24 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(47, 47, 47)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(cboNhanVien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(16, 16, 16))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addContainerGap(119, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(cboLoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(16, 16, 16))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addContainerGap(119, Short.MAX_VALUE))))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,7 +339,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboLoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -354,7 +363,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -380,6 +389,8 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
+        String query = txtTimKiem.getText();
+        find(query);
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
@@ -387,6 +398,12 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
         row = tblNhanVien.getSelectedRow();
         edit();
     }//GEN-LAST:event_tblNhanVienMouseClicked
+
+    private void cboLocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboLocItemStateChanged
+        // TODO add your handling code here:
+        String query = cboLoc.getSelectedItem().toString();
+        filterCbo(query);
+    }//GEN-LAST:event_cboLocItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -397,7 +414,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cboNhanVien;
+    private javax.swing.JComboBox<String> cboLoc;
     private com.toedter.calendar.JDateChooser dcNgaySInh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -446,17 +463,11 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
         btnCapNhat.setEnabled(edit);
         btnXoa.setEnabled(edit);
     }
+    DefaultTableModel model;
 
-    // private void fillCBOLoc() {
-    //     String list[] = {"Nam","Nữ","Quản lý","Nhân viên","Năm sinh"};
-    //     cboNhanVien.removeAllItems();
-    //     for(String str : list) {
-    //         cboNhanVien.addItem(str);
-    //     }
-    // }
     private void fillTable() {
-        String header[] = {"Mã NV", "Họ và tên", "Giới tính","Ngày sinh", "Vai trò"};
-        DefaultTableModel model = new DefaultTableModel(header, 0);
+        String header[] = {"Mã NV", "Họ và tên", "Giới tính", "Ngày sinh", "Vai trò"};
+        model = new DefaultTableModel(header, 0);
         tblNhanVien.setModel(model);
         try {
             List<NhanVien> list = dao.selectAll();
@@ -468,7 +479,30 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             Message.alert(this, "Lỗi truy vấn dữ liệu!");
         }
+    }
 
+    private void filterCbo(String query) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        tblNhanVien.setRowSorter(tr);
+
+        if (query != "None") {
+            tr.setRowFilter(RowFilter.regexFilter(query));
+        } else {
+            tblNhanVien.setRowSorter(tr);
+        }
+
+    }
+
+    private void find(String query) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        tblNhanVien.setRowSorter(tr);
+
+        tr.setRowFilter(RowFilter.regexFilter(query));
+    }
+
+    private void fillBoLoc() {
+        String[] data = {"None", "Nam", "Nữ", "Quản lý", "Nhân viên"};
+        cboLoc.setModel(new DefaultComboBoxModel<>(data));
     }
 
     private boolean checkNull(NhanVien nv) {
@@ -514,8 +548,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
         nv.setEmail(txtEmail.getText());
         if (rdoNhanVien.isSelected()) {
             nv.setVaiTro(false);
-        }
-        else{
+        } else {
             nv.setVaiTro(true);
         }
         return nv;
@@ -539,26 +572,24 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
     }
 
     private void delete() {
-       if(!Auth.isManager()){
-           Message.alert(this, "Bạn không có quyền xóa Nhân viên!");
-       }
-       else{
+        if (!Auth.isManager()) {
+            Message.alert(this, "Bạn không có quyền xóa Nhân viên!");
+        } else {
             NhanVien nv = getForm();
-           if(Auth.user.getMaNV().equals(nv.getMaNV())){
-               Message.alert(this, "Bạn không được xóa chính bạn!");
-           }
-            if(Message.confirm(this, "Bạn có muốn xóa hay không?")){
+            if (Auth.user.getMaNV().equals(nv.getMaNV())) {
+                Message.alert(this, "Bạn không được xóa chính bạn!");
+            }
+            if (Message.confirm(this, "Bạn có muốn xóa hay không?")) {
                 try {
                     dao.delete(nv.getMaNV());
                     this.fillTable();
                     this.clearForm();
                     Message.alert(this, "Xóa thành công!");
-                } 
-                catch (Exception e) {
+                } catch (Exception e) {
                     Message.alert(this, "Xóa thất bại!");
                     e.printStackTrace();
                 }
-           }
+            }
         }
     }
 
@@ -585,8 +616,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
             dao.update(model);
             this.fillTable();
             Message.alert(this, "Cập nhật thành công!");
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             Message.alert(this, "Cập nhật thất bại!");
             e.printStackTrace();
         }

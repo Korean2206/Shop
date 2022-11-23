@@ -460,6 +460,12 @@ public class ShopJFrame extends javax.swing.JFrame {
         setIconApp();
         showClock();
         setTenNV();
+        Rectangle r = this.getBounds();
+        int h = r.height;
+        int w = r.width;
+        Dimension d = new Dimension(pnlMenu.getWidth(),h);
+        pnlMenu.setPreferredSize(d);
+        
         
     }
 
