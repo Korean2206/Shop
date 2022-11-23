@@ -234,7 +234,8 @@ public class LoginJDialog extends javax.swing.JDialog implements KeyListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void init() {
-
+        txtAcc.setText("NV1");
+        txtPass.setText("123456");
     }
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnCloseMouseClicked
