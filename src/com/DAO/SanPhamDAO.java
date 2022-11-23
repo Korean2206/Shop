@@ -20,7 +20,7 @@ public class SanPhamDAO extends ShopFrameDAO<SanPham,String> {
     public void insert(SanPham entity) {
         // TODO Auto-generated method stub  
         try {
-            Jdbc.update(sqlUpdate,entity.getMaSP(),entity.getTenSP(),entity.getMaLoai(),entity.getSize(),entity.getTrangThai(),entity.getGiaSP(),entity.getSoLuong(),entity.getHinhAnh(),entity.getMoTa(),entity.getMaNV());
+            Jdbc.update(sqlInsert,entity.getMaSP(),entity.getTenSP(),entity.getMaLoai(),entity.getSize(),entity.getTrangThai(),entity.getGiaSP(),entity.getSoLuong(),entity.getHinhAnh(),entity.getMoTa(),entity.getMaNV());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

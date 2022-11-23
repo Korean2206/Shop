@@ -29,4 +29,8 @@ public class Loai {
         this.danhCho = danhCho;
     }
     
+    @Override
+    public String toString() {
+        return this.tenLoai;
+    }
 }
