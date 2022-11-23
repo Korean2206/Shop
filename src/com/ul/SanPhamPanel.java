@@ -20,6 +20,8 @@ import com.entity.SanPham;
 import com.utils.XImage;
 import com.utils.Auth;
 import com.utils.Message;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -231,7 +233,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
                             .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(btnThem)
-                        .addGap(18, 18, 18)
+                        .addGap(23, 23, 23)
                         .addComponent(btnXoa)
                         .addGap(18, 18, 18)
                         .addComponent(btnCapNhat)
@@ -271,6 +273,11 @@ public class SanPhamPanel extends javax.swing.JPanel {
         jLabel26.setText("Tìm kiếm :");
 
         cboSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboSanPham.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboSanPhamItemStateChanged(evt);
+            }
+        });
 
         jLabel27.setText("Lọc sản phẩm");
 
@@ -344,6 +351,12 @@ public class SanPhamPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cboSanPhamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSanPhamItemStateChanged
+        // TODO add your handling code here:
+        String query = cboSanPham.getSelectedItem().toString();
+        filterCbo(query);
+    }//GEN-LAST:event_cboSanPhamItemStateChanged
+
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         insert();
@@ -366,6 +379,8 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
+        String query = txtTimKiem.getText();
+        find(query);
     }// GEN-LAST:event_btnTimKiemActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tblSanPhamMouseClicked
@@ -381,7 +396,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     private void cboMaLoaiActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cboMaLoaiActionPerformed
         // TODO add your handling code here:
-        System.out.println(cboMaLoai.getSelectedItem());
+
     }// GEN-LAST:event_cboMaLoaiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -429,18 +444,21 @@ public class SanPhamPanel extends javax.swing.JPanel {
         this.updateStatus();
         fillCBOLoai();
         fillCBOTrangThai();
+        fillBoLoc();
 
     }
 
+    DefaultTableModel model;
+
     private void fillTable() {
-        String header[] = { "Mã SP", "Tên SP", "Mã Loại", "Size", "Trạng thái", "Số Lượng" };
-        DefaultTableModel model = new DefaultTableModel(header, 0);
+        String header[] = {"Mã SP", "Tên SP", "Mã Loại", "Size", "Trạng thái", "Số Lượng", "Hình ảnh"};
+        model = new DefaultTableModel(header, 0);
         tblSanPham.setModel(model);
         try {
             List<SanPham> list = daoSP.selectAll();
             for (SanPham sp : list) {
                 Object[] row = {
-                        sp.getMaSP(), sp.getTenSP(), sp.getMaLoai(), sp.getSize(), sp.getTrangThai(), sp.getSoLuong()
+                    sp.getMaSP(), sp.getTenSP(), sp.getMaLoai(), sp.getSize(), sp.getTrangThai(), sp.getSoLuong(), sp.getHinhAnh()
                 };
                 model.addRow(row);
             }
@@ -449,6 +467,30 @@ public class SanPhamPanel extends javax.swing.JPanel {
             e.printStackTrace();
 
         }
+    }
+
+    private void filterCbo(String query) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        tblSanPham.setRowSorter(tr);
+
+        if (query != "None") {
+            tr.setRowFilter(RowFilter.regexFilter(query));
+        } else {
+            tblSanPham.setRowSorter(tr);
+        }
+
+    }
+    
+    private void fillBoLoc() {
+        String[] data = {"None", "Còn hàng", "Hết hàng"};
+        cboSanPham.setModel(new DefaultComboBoxModel<>(data));
+    }
+
+    private void find(String query) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        tblSanPham.setRowSorter(tr);
+
+        tr.setRowFilter(RowFilter.regexFilter(query));
     }
 
     private void edit() {
@@ -463,8 +505,8 @@ public class SanPhamPanel extends javax.swing.JPanel {
         txtMaSP.setText(sp.getMaSP());
         txtTenSP.setText(sp.getTenSP());
         if(sp.getMaLoai() != null){
-            cboMaLoai.setSelectedItem(daoLoai.selectByID(sp.getMaLoai()));
-            cboMaLoai.setToolTipText(sp.getMaLoai() + "");
+        cboMaLoai.getModel().setSelectedItem(daoLoai.selectByID(sp.getMaLoai()));
+        cboMaLoai.setToolTipText(sp.getMaLoai() + "");
         }
         else {
             cboMaLoai.setSelectedIndex(0);
@@ -473,10 +515,10 @@ public class SanPhamPanel extends javax.swing.JPanel {
         txtSoLuong.setText(String.valueOf(sp.getSoLuong()));
         txtMoTa.setText(sp.getMoTa());
         txtGiaSP.setText(String.valueOf(sp.getGiaSP()));
-        if(sp.getHinhAnh() != null ) {
+        if (sp.getHinhAnh() != null) {
             lblImage.setIcon(setSizeIcon(sp.getHinhAnh()));
             lblImage.setToolTipText(sp.getHinhAnh());
-        }else {
+        } else {
             lblImage.setIcon(null);
         }
         cboTT.setSelectedItem(sp.getTrangThai());
@@ -565,7 +607,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
     }
 
     private void fillCBOTrangThai() {
-        String[] status = { "Còn hàng", "Hết hàng" };
+        String[] status = {"Còn hàng", "Hết hàng"};
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboTT.getModel();
         model.removeAllElements();
         for (int i = 0; i < status.length; i++) {
