@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Jdbc {
     private static final String user = "sa";
-    private static final String password = "1234";
+    private static final String password = "Password.1";
     private static final String url ="jdbc:sqlserver://localhost:1433;databaseName=SecondHandShop";
     private static final String driver ="com.microsoft.sqlserver.jdbc.SQLServerDriver";
     static Connection conn;
