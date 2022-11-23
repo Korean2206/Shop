@@ -19,7 +19,7 @@ public class KhuyenMaiDAO extends ShopFrameDAO<KhuyenMai,String>{
     public void insert(KhuyenMai entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlInsert,entity.getMaKM(),entity.getTenKM(),entity.getMaKM(),entity.getNgayBatDau(),entity.getPhanTram(),entity.getNgayKetThuc(),entity.getPhanTram(),entity.getMaNV());
+            Jdbc.update(sqlInsert,entity.getMaKM(),entity.getTenKM(),entity.getMaLoaiKM(),entity.getNgayBatDau(),entity.getNgayKetThuc(),entity.getPhanTram(),entity.getMaNV());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class KhuyenMaiDAO extends ShopFrameDAO<KhuyenMai,String>{
     public void update(KhuyenMai entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlUpdate,entity.getTenKM(),entity.getMaKM(),entity.getNgayBatDau(),entity.getPhanTram(),entity.getNgayKetThuc(),entity.getPhanTram(),entity.getMaNV(),entity.getMaKM());
+            Jdbc.update(sqlUpdate,entity.getTenKM(),entity.getMaLoaiKM(),entity.getNgayBatDau(),entity.getNgayKetThuc(),entity.getPhanTram(),entity.getMaNV(),entity.getMaKM());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -40,7 +40,7 @@ public class KhuyenMaiDAO extends ShopFrameDAO<KhuyenMai,String>{
     }
 
     @Override
-    public void delete( String key) {
+    public void delete(String key) {
         // TODO Auto-generated method stub
         try {
             Jdbc.update(sqlDelete,key);

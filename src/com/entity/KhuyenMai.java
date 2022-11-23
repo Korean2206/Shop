@@ -6,8 +6,8 @@ public class KhuyenMai {
     private String maKM;
     private String tenKM;
     private String maLoaiKM;
-    private Date ngayBatDau;
-    private Date ngayKetThuc;
+    private Date ngayBatDau = new Date();
+    private Date ngayKetThuc = new Date();
     private double phanTram;
     private String maNV;
 
