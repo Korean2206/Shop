@@ -64,8 +64,8 @@ public class ShopJFrame extends javax.swing.JFrame {
         btnThongKe = new javax.swing.JPanel();
         label4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        lblTenNV = new javax.swing.JLabel();
         lblVaiTro = new javax.swing.JLabel();
+        lblTenNV = new javax.swing.JLabel();
         pnlCards = new javax.swing.JPanel();
         pnlBanHang = new com.ul.BanHangPanel();
         pnlKhuyenMai = new com.ul.KhuyenMaiPanel();
@@ -279,26 +279,35 @@ public class ShopJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
-        lblTenNV.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        lblTenNV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTenNV.setText("Tên Nhân Viên");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTenNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 17, Short.MAX_VALUE))
+            .addGap(0, 49, Short.MAX_VALUE)
         );
 
         lblVaiTro.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblVaiTro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblVaiTro.setText("Vai trò");
+
+        lblTenNV.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        lblTenNV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTenNV.setText("Tên Nhân Viên");
+        lblTenNV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTenNVMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblTenNVMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblTenNVMouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
@@ -310,7 +319,8 @@ public class ShopJFrame extends javax.swing.JFrame {
             .addComponent(btnBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnThemNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblVaiTro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblTenNV, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(lblVaiTro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,10 +335,13 @@ public class ShopJFrame extends javax.swing.JFrame {
                 .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnThemNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(200, 200, 200)
-                .addComponent(lblVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pnlBackground.add(pnlMenu, java.awt.BorderLayout.WEST);
@@ -350,13 +363,27 @@ public class ShopJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblTenNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTenNVMouseClicked
+        // TODO add your handling code here:
+        new ThongTinCaNhan(this,true).setVisible(true);
+    }//GEN-LAST:event_lblTenNVMouseClicked
+
+    private void lblTenNVMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTenNVMousePressed
+        // TODO add your handling code here:
+        h.changeCursor(true, lblTenNV);
+    }//GEN-LAST:event_lblTenNVMousePressed
+
+    private void lblTenNVMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTenNVMouseReleased
+        // TODO add your handling code here:
+        h.changeCursor(false, lblTenNV);
+
+    }//GEN-LAST:event_lblTenNVMouseReleased
 
     private void btnKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnKhuyenMaiMouseClicked
         // TODO add your handling code here:
@@ -460,14 +487,21 @@ public class ShopJFrame extends javax.swing.JFrame {
         setIconApp();
         showClock();
         setTenNV();
+        manager();
         Rectangle r = this.getBounds();
         int h = r.height;
         int w = r.width;
         Dimension d = new Dimension(pnlMenu.getWidth(),h);
         pnlMenu.setPreferredSize(d);
         
-        
     }
+    private void manager() {
+        btnThemNhanVien.setVisible(false);
+        if(Auth.user.getVaiTro()){
+            btnThemNhanVien.setVisible(true);
+        }
+    }
+    
 
     private void setTenNV() {
         lblTenNV.setText(Auth.user.getTen());
