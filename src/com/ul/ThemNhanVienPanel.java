@@ -451,7 +451,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
     private void init() {
         fillTable();
         updateStatus();
-        // fillCBOLoc();
+        fillCBOLoc();
 
     }
 
@@ -500,7 +500,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
         tr.setRowFilter(RowFilter.regexFilter(query));
     }
 
-    private void fillBoLoc() {
+    private void fillCBOLoc() {
         String[] data = {"None", "Nam", "Nữ", "Quản lý", "Nhân viên"};
         cboLoc.setModel(new DefaultComboBoxModel<>(data));
     }
