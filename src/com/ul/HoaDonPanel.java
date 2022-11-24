@@ -1,5 +1,15 @@
 package com.ul;
 
+import java.util.Date;
+
+import javax.swing.table.DefaultTableModel;
+
+import com.DAO.KhachHangDAO;
+import com.entity.HDCT;
+import com.entity.HoaDon;
+import com.entity.KhachHang;
+import com.utils.Auth;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -16,6 +26,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
      */
     public HoaDonPanel() {
         initComponents();
+        init();
     }
 
     /**
@@ -34,7 +45,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtDiem = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblSanPham = new javax.swing.JTable();
+        tblSoLuongSP = new javax.swing.JTable();
         txtGhiChu = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtGhiCHu = new javax.swing.JTextArea();
@@ -55,7 +66,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Điểm tích lũy :");
 
-        tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
+        tblSoLuongSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,7 +77,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblSanPham);
+        jScrollPane1.setViewportView(tblSoLuongSP);
 
         txtGhiChu.setText("Ghi chú :");
 
@@ -85,8 +96,18 @@ public class HoaDonPanel extends javax.swing.JPanel {
         jLabel9.setText("Tiền thừa :");
 
         btnThanhToan.setText("Thanh toán");
+        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThanhToanActionPerformed(evt);
+            }
+        });
 
         btnHuy.setText("Hủy");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -170,6 +191,14 @@ public class HoaDonPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHuyActionPerformed
+
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThanhToanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuy;
@@ -184,7 +213,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblSanPham;
+    public static javax.swing.JTable tblSoLuongSP;
     private javax.swing.JTextField txtDiem;
     private javax.swing.JTextArea txtGhiCHu;
     private javax.swing.JLabel txtGhiChu;
@@ -194,4 +223,66 @@ public class HoaDonPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTienThua;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
+    private void init() {
+        fillCBOHTTT();
+        fillTableSL();
+    }
+
+    private void fillTableSL() {
+        String []header = {"Mã SP","Tên SP","Size","Đơn Giá","Số Lượng","Tổng tiền"};
+        DefaultTableModel model = new DefaultTableModel(header,0);
+        HoaDonPanel.tblSoLuongSP.setModel(model);
+    }
+    private void fillCBOHTTT() {
+        String []list = {"Tiền mặt","Chuyển khoản"};
+        cboPttt.removeAllItems();
+        for(int i=0; i<list.length;i++){
+            cboPttt.addItem(list[i]);
+        }
+    }
+    KhachHangDAO daoKH = new KhachHangDAO();
+    private KhachHang getInfor(String maKH) {
+        KhachHang kh = daoKH.selectByID(maKH);
+        return kh;
+    }
+    private void setFormHDCT(HDCT hdct) {
+        KhachHang kh = getInfor(hdct.getMaKH());
+        txtSDT.setText(kh.getSdt());
+        txtTen.setText(kh.getTenKH());
+        txtDiem.setText(String.valueOf(kh.getDiem()));
+        
+    }
+    private void setFromHD(HoaDon hd){
+        txtGhiCHu.setText(hd.getMoTa());
+        txtTongTien.setText(String.valueOf(hd.getTongTien()));
+        cboPttt.setSelectedItem(cboPttt.getSelectedItem());
+        txtTienKhachTra.setText(String.valueOf(hd.getTienKhachDua()));
+        txtTienThua.setText(String.valueOf(hd.getTienThua()));
+    }
+    private HoaDon getFormHD() {
+        HoaDon hd = new HoaDon();
+        hd.setMaNV(Auth.user.getMaNV());
+        hd.setNgayTao(new Date());
+        hd.setTongTien(Double.parseDouble(txtTongTien.getText()));
+        hd.setTienKhachDua(Double.parseDouble(txtTienKhachTra.getText()));
+        hd.setTienThua(Double.parseDouble(txtTienThua.getText()));
+        hd.setPttt(cboPttt.getSelectedItem().toString());
+        hd.setMaKH(txtSDT.getText());
+        hd.setMoTa(txtGhiCHu.getText());
+        return hd;
+    }
+    private void clearForm(){
+        HoaDon hd = new HoaDon();
+        HDCT hdct = new HDCT();
+        setFormHDCT(hdct);
+        setFromHD(hd);
+    }
+    private void insert() {
+
+    }
+    private void update() {
+
+    }
+
+    
 }

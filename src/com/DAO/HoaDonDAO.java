@@ -54,7 +54,7 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
     public List<HoaDon> selectAll() {
         // TODO Auto-generated method stub
         List<HoaDon> list = new ArrayList<HoaDon>();
-        list = selectBySQL(sqlSelectByID);
+        list = selectBySQL(sqlSelectAll);
         return list;
     }
 
@@ -74,7 +74,7 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
             ResultSet rs = Jdbc.query(sql, args);
             while (rs.next()) {
             HoaDon entity = new HoaDon();
-            entity.setMaHD(rs.getInt("MaHDCT"));
+            entity.setMaHD(rs.getInt("MaHD"));
             entity.setMaKH(rs.getString("MaKH"));
             entity.setMaNV(rs.getString("MaNV"));
             entity.setTrangThai(rs.getString("TrangThai"));

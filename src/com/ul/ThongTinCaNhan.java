@@ -309,13 +309,16 @@ public class ThongTinCaNhan extends javax.swing.JDialog {
         nv.setEmail(txtEmail.getText());
         nv.setDiaChi(txtDiaChi.getText());
         nv.setPassword(Auth.user.getPassword());
+        nv.setVaiTro(Auth.isManager());
         return nv;
     }
     NhanVienDAO dao = new NhanVienDAO();
+    ThemNhanVienPanel pnlNV = new ThemNhanVienPanel();
     private void capNhatTT() {
         NhanVien nv = getForm();
         try {
             dao.update(nv);
+            pnlNV.fillTable();
             Message.alert(this, "Cập nhật thành công");
 
         } catch (Exception e) {
@@ -336,7 +339,8 @@ public class ThongTinCaNhan extends javax.swing.JDialog {
             String sql = "update Nhanvien set password = ? where MaNV = ?";
             try {
                 Jdbc.update(sql,mKM,Auth.user.getMaNV());
-            Message.alert(this, "Đổi mật khẩu thành công");
+                pnlNV.fillTable();
+                Message.alert(this, "Đổi mật khẩu thành công");
 
             } catch (SQLException e) {
                 // TODO Auto-generated catch block

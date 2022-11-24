@@ -7,7 +7,6 @@ public class HDCT {
     private String maSP;
     private double donGia;
     private int soLuong;
-    private String moTa;
 
     public int getMaHDCT() {
         return this.maHDCT;
@@ -57,12 +56,5 @@ public class HDCT {
         this.soLuong = soLuong;
     }
 
-    public String getMoTa() {
-        return this.moTa;
-    }
-
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
-    }
 
 }

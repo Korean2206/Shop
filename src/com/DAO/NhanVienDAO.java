@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.entity.NhanVien;
-import com.toedter.calendar.JDayChooser;
 import com.utils.Jdbc;
 
 public class NhanVienDAO extends ShopFrameDAO<NhanVien,String> {

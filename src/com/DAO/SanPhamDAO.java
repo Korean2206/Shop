@@ -65,7 +65,13 @@ public class SanPhamDAO extends ShopFrameDAO<SanPham,String> {
         list = selectBySQL(sqlSelectByID, key);
         return list.get(0);
     }
-
+    public List<SanPham> themSP(List<String> keys) {
+        List<SanPham> list = new ArrayList<SanPham>();
+        for(int i = 0; i < keys.size(); i++) {
+            list.add(selectByID(keys.get(i)));
+        }
+        return list;
+    }
     @Override
     public List<SanPham> selectBySQL(String sql, Object... args) {
         // TODO Auto-generated method stub

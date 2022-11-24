@@ -7,12 +7,24 @@ package com.ul;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
+import com.DAO.HoaDonDAO;
+import com.DAO.HDCTDAO;
+import com.DAO.SanPhamDAO;
+import com.entity.HDCT;
+import com.entity.HoaDon;
+import com.entity.SanPham;
+import com.ul.HoaDonPanel;
+import com.utils.Message;
 
 /**
  *
@@ -36,6 +48,8 @@ public class BanHangPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         pnlSanPham = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblSanPham = new javax.swing.JTable();
         pnlTrangThaiHoaDon5 = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
@@ -44,15 +58,39 @@ public class BanHangPanel extends javax.swing.JPanel {
 
         pnlSanPham.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSanPhamMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblSanPham);
+
         javax.swing.GroupLayout pnlSanPhamLayout = new javax.swing.GroupLayout(pnlSanPham);
         pnlSanPham.setLayout(pnlSanPhamLayout);
         pnlSanPhamLayout.setHorizontalGroup(
             pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pnlSanPhamLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlSanPhamLayout.setVerticalGroup(
             pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 246, Short.MAX_VALUE)
+            .addGroup(pnlSanPhamLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pnlTrangThaiHoaDon5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -114,14 +152,106 @@ public class BanHangPanel extends javax.swing.JPanel {
                         .addComponent(pnlSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnlTrangThaiHoaDon5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblSanPhamMouseClicked
+
     private void init() {
         taoHoaDon();
-
+        fillTableSP();
+        fillTableHD();
+        chonSP();
+        xoaSP();
     }
+    private SanPhamDAO daoSP = new SanPhamDAO();
+    private HoaDonDAO daoHD = new HoaDonDAO();
+    private HDCTDAO daoHDCT = new HDCTDAO();
+
+    private void fillTableHD() {
+        try{
+            String header[] = {"Mã Người tạo","Mã HD","Ngày tạo","Trạng thái","PTTT","Tổng tiền"};
+            DefaultTableModel model = new DefaultTableModel(header, 0);
+            tblHoaDon.setModel(model);
+            List<HDCT> list = daoHDCT.selectAll();
+            for(HDCT hdct : list){
+                HoaDon h = daoHD.selectByID(hdct.getMaHD());
+                Double tt = hdct.getSoLuong() * hdct.getDonGia();
+                Object[] row = {h.getMaNV(),h.getMaHD(),h.getNgayTao(),h.getTrangThai(),h.getPttt(),tt};
+                model.addRow(row);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            Message.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+    private void fillTableSP() {
+        String header[] = {"Mã SP", "Tên SP", "Mã Loại", "Size", "Trạng thái", "Số Lượng", "Hình ảnh"};
+        DefaultTableModel model = new DefaultTableModel(header, 0);
+        tblSanPham.setModel(model);
+        try {
+            List<SanPham> list = daoSP.selectAll();
+            for (SanPham sp : list) {
+                Object[] row = {
+                    sp.getMaSP(), sp.getTenSP(), sp.getMaLoai(), sp.getSize(), sp.getTrangThai(), sp.getSoLuong(), sp.getHinhAnh()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            Message.alert(this, "Lỗi truy vấn dữ liệu!");
+            e.printStackTrace();
+
+        }
+    }
+    int row = -1;
+    List<String> maSPList = new ArrayList<String>();
+    private void chonSP() {
+        final JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem addItem = new JMenuItem("Thêm sản phẩm");
+        addItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                row = tblSanPham.getSelectedRow();
+                String maSP =(String) tblSanPham.getValueAt(row, 0);
+                maSPList.add(maSP);
+                fillTableSL(maSPList);
+            }
+        });
+        popupMenu.add(addItem);
+        tblSanPham.setComponentPopupMenu(popupMenu);
+    }
+    private void xoaSP() {
+        final JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem addItem = new JMenuItem("Xóa sản phẩm");
+        addItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                row = tblSanPham.getSelectedRow();
+                String maSP =(String) tblSanPham.getValueAt(row, 0);
+                maSPList.remove(maSP);
+                fillTableSL(maSPList);
+            }
+        });
+        popupMenu.add(addItem);
+        HoaDonPanel.tblSoLuongSP.setComponentPopupMenu(popupMenu);
+    }
+    
+    private void fillTableSL(List<String> maSP) {
+        String []header = {"Mã SP","Tên SP","Size","Đơn Giá","Số Lượng","Tổng tiền"};
+        DefaultTableModel model = new DefaultTableModel(header,0);
+        HoaDonPanel.tblSoLuongSP.setModel(model);
+        List<SanPham> list = daoSP.themSP(maSP);
+        int soLuong = 1;
+        for(SanPham sp : list){
+            Double tt = soLuong * sp.getGiaSP();
+            Object[] row = {sp.getMaSP(),sp.getTenSP(),sp.getSize(),sp.getGiaSP(),soLuong,tt};
+            model.addRow(row);
+        }
+    }
+    
     private void taoHoaDon() {
         JPopupMenu pmnHD = new JPopupMenu();
         JMenuItem mniTaoHD = new JMenuItem("Tạo hóa đơn");
@@ -148,12 +278,14 @@ public class BanHangPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private com.ul.HoaDonPanel pnlHoaDon;
     private javax.swing.JPanel pnlSanPham;
     private javax.swing.JPanel pnlTaoHD;
     private javax.swing.JPanel pnlTrangThaiHoaDon5;
     private javax.swing.JTable tblHoaDon;
+    private javax.swing.JTable tblSanPham;
     // End of variables declaration//GEN-END:variables
 
 }

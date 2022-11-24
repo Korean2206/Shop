@@ -465,7 +465,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
     }
     DefaultTableModel model;
 
-    private void fillTable() {
+    void fillTable() {
         String header[] = {"Mã NV", "Họ và tên", "Giới tính", "Ngày sinh", "Vai trò"};
         model = new DefaultTableModel(header, 0);
         tblNhanVien.setModel(model);
