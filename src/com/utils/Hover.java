@@ -13,6 +13,7 @@ public class Hover {
     private Color defaultColor = new Color(255, 204, 204);
     private Color clickedColor = new Color(204, 255, 0);
     private Color white = new Color(255, 255, 255);
+    private Color red = new Color(255,51,51);
     public void changeCursor(Boolean b,JLabel l) {
         if(b){
             l.setForeground(enteredColor);
