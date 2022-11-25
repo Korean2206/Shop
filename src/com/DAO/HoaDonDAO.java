@@ -10,8 +10,8 @@ import com.utils.Jdbc;
 
 public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
 
-    private final String sqlInsert = "INSERT INTO HoaDon(MaKH,MaNV,TrangThai,NgayTao,PhuongThucTT,TongTien) values(?,?,?,?,?);";
-    private final String sqlUpdate = "UPDATE HoaDon set MaKH=?,MaNV=?,TrangThai=?,NgayTao=?,PhuongThucTT=? where MaHD =?";
+    private final String sqlInsert = "INSERT INTO HoaDon(MaKH,MaNV,TrangThai,NgayTao,PhuongThucTT,TongTien,tienKhachDua,tienThua,moTa) values(?,?,?,?,?,?,?,?,?);";
+    private final String sqlUpdate = "UPDATE HoaDon set MaKH=?,MaNV=?,TrangThai=?,NgayTao=?,PhuongThucTT=?,tongTien=?,tienKhachDua=?,tienThua=?,moTa=? where MaHD =?";
     private final String sqlDelete = "DELETE FROM HoaDon where MaHD =?";
     private final String sqlSelectAll = "SELECT * FROM HoaDon ";
     private final String sqlSelectByID = "SELECT * FROM HoaDon where MaHD =?";
@@ -19,7 +19,7 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
     public void insert(HoaDon entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlInsert,entity.getMaKH(),entity.getMaNV(),entity.getTrangThai(),entity.getNgayTao(),entity.getPttt());
+            Jdbc.update(sqlInsert,entity.getMaKH(),entity.getMaNV(),entity.getTrangThai(),entity.getNgayTao(),entity.getPttt(),entity.getTongTien(),entity.getTienKhachDua(),entity.getTienThua(),entity.getMoTa());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -30,7 +30,7 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
     public void update(HoaDon entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlUpdate,entity.getMaKH(),entity.getMaNV(),entity.getTrangThai(),entity.getNgayTao(),entity.getPttt(),entity.getMaHD());
+            Jdbc.update(sqlUpdate,entity.getMaKH(),entity.getMaNV(),entity.getTrangThai(),entity.getNgayTao(),entity.getPttt(),entity.getTongTien(),entity.getTienKhachDua(),entity.getTienThua(),entity.getMoTa(),entity.getMaHD());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -80,6 +80,10 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
             entity.setTrangThai(rs.getString("TrangThai"));
             entity.setNgayTao(rs.getDate("NgayTao"));
             entity.setPttt(rs.getString("PhuongThucTT"));
+            entity.setTongTien(rs.getDouble("tongTien"));
+            entity.setTienKhachDua(rs.getDouble("tienKhachDua"));
+            entity.setTienThua(rs.getDouble("tienThua"));
+            entity.setMoTa(rs.getString("moTa"));
             list.add(entity);
            }
            rs.getStatement().getConnection().close();

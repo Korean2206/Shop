@@ -4,11 +4,15 @@ import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
 
+import com.DAO.HDCTDAO;
+import com.DAO.HoaDonDAO;
 import com.DAO.KhachHangDAO;
+import com.DAO.SanPhamDAO;
 import com.entity.HDCT;
 import com.entity.HoaDon;
 import com.entity.KhachHang;
 import com.utils.Auth;
+import com.utils.Message;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -271,13 +275,34 @@ public class HoaDonPanel extends javax.swing.JPanel {
         hd.setMoTa(txtGhiCHu.getText());
         return hd;
     }
+    private HDCT getFormHDCT(HoaDon hd) {
+        HDCT hdct = new HDCT();
+        hdct.setMaHD(hd.getMaHD());
+        hdct.setMaKH(TOOL_TIP_TEXT_KEY);
+        hdct.setMaSP(TOOL_TIP_TEXT_KEY);
+        hdct.setSoLuong(ABORT);
+        hdct.setDonGia(ABORT);
+        return hdct;
+    }
     private void clearForm(){
         HoaDon hd = new HoaDon();
         HDCT hdct = new HDCT();
         setFormHDCT(hdct);
         setFromHD(hd);
     }
+    private HoaDonDAO daoHD = new HoaDonDAO();
+    private HDCTDAO daoHDCT = new HDCTDAO();
+    private SanPhamDAO daoSP = new SanPhamDAO();
     private void insert() {
+        HoaDon hd = getFormHD();
+        try{
+            
+
+            Message.alert(this, "Đã thanh toán");
+        }catch (Exception e) {
+            e.printStackTrace();
+            Message.alert(this, "Thanh toán thất bại");
+        }
 
     }
     private void update() {

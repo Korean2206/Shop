@@ -10,8 +10,8 @@ import com.utils.Jdbc;
 
 public class HDCTDAO extends ShopFrameDAO<HDCT,Integer> {
 
-    private final String sqlInsert = "INSERT INTO HDCT values(?,?,?,?,?,?,?);";
-    private final String sqlUpdate = "UPDATE HDCT set MaHD=?,MaKH=?,MaSP=?,DonGia=?,SoLuong=?,MoTa=? where MaHDCT =?";
+    private final String sqlInsert = "INSERT INTO HDCT(MaHD,MaKH,MaSP,DonGia,SoLuong) values(?,?,?,?,?);";
+    private final String sqlUpdate = "UPDATE HDCT set MaHD=?,MaKH=?,MaSP=?,DonGia=?,SoLuong=? where MaHDCT =?";
     private final String sqlDelete = "DELETE FROM HDCT where MaHDCT =?";
     private final String sqlSelectAll = "SELECT * FROM HDCT ";
     private final String sqlSelectByID = "SELECT * FROM HDCT where MaHDCT =?";
@@ -19,7 +19,7 @@ public class HDCTDAO extends ShopFrameDAO<HDCT,Integer> {
     public void insert(HDCT entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlInsert,entity.getMaHDCT(),entity.getMaKH(),entity.getMaSP(),entity.getDonGia(),entity.getSoLuong(),entity.getMoTa(),entity.getMoTa());
+            Jdbc.update(sqlInsert,entity.getMaHD(),entity.getMaKH(),entity.getMaSP(),entity.getDonGia(),entity.getSoLuong());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class HDCTDAO extends ShopFrameDAO<HDCT,Integer> {
     public void update(HDCT entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlUpdate,entity.getMaKH(),entity.getMaSP(),entity.getDonGia(),entity.getSoLuong(),entity.getMoTa(),entity.getMoTa(),entity.getMaHDCT());
+            Jdbc.update(sqlUpdate,entity.getMaHD(),entity.getMaKH(),entity.getMaSP(),entity.getDonGia(),entity.getSoLuong(),entity.getMaHDCT());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -76,12 +76,11 @@ public class HDCTDAO extends ShopFrameDAO<HDCT,Integer> {
            while (rs.next()) {
             HDCT entity = new HDCT();
             entity.setMaHDCT(rs.getInt("MaHDCT"));
-            entity.setMaHD(rs.getInt("MaHDCT"));
+            entity.setMaHD(rs.getInt("MaHD"));
             entity.setMaKH(rs.getString("MaKH"));
             entity.setMaSP(rs.getString("MaSP"));
             entity.setDonGia(rs.getDouble("DonGia"));
             entity.setSoLuong(rs.getInt("SoLuong"));
-            entity.setMoTa(rs.getString("MoTa"));
             list.add(entity);
            }
            rs.getStatement().getConnection().close();
