@@ -19,13 +19,23 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
     public void insert(HoaDon entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlInsert,entity.getMaKH(),entity.getMaNV(),entity.getTrangThai(),entity.getNgayTao(),entity.getPttt(),entity.getTongTien(),entity.getTienKhachDua(),entity.getTienThua(),entity.getMoTa());
+            Jdbc.getIdHoaDon(sqlInsert,entity.getMaKH(),entity.getMaNV(),entity.getTrangThai(),entity.getNgayTao(),entity.getPttt(),entity.getTongTien(),entity.getTienKhachDua(),entity.getTienThua(),entity.getMoTa());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-
+    public int insertGetID(HoaDon entity) {
+        // TODO Auto-generated method stub
+        try {
+            return Jdbc.getIdHoaDon(sqlInsert,entity.getMaKH(),entity.getMaNV(),entity.getTrangThai(),entity.getNgayTao(),entity.getPttt(),entity.getTongTien(),entity.getTienKhachDua(),entity.getTienThua(),entity.getMoTa());
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return -1;
+        }
+        
+    }
     @Override
     public void update(HoaDon entity) {
         // TODO Auto-generated method stub
@@ -66,6 +76,7 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
         return list.get(0);
     }
 
+
     @Override
     public List<HoaDon> selectBySQL(String sql, Object... args) {
         // TODO Auto-generated method stub
@@ -95,5 +106,6 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
 
         }
     }
+
     
 }

@@ -113,11 +113,24 @@ public class BanHangPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKhachHangMouseClicked(evt);
+            }
+        });
         jScrollPane10.setViewportView(tblKhachHang);
 
         txtTimKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTimKHActionPerformed(evt);
+            }
+        });
+        txtTimKH.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTimKHKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKHKeyReleased(evt);
             }
         });
 
@@ -183,7 +196,24 @@ public class BanHangPanel extends javax.swing.JPanel {
 
     private void txtTimKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKHActionPerformed
         // TODO add your handling code here:
+        fillTableKH();
+
     }//GEN-LAST:event_txtTimKHActionPerformed
+
+    private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
+        // TODO add your handling code here:
+        rowKH = tblKhachHang.getSelectedRow();
+    }//GEN-LAST:event_tblKhachHangMouseClicked
+
+    private void txtTimKHKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKHKeyPressed
+        // TODO add your handling code here:
+        fillTableKH();
+    }//GEN-LAST:event_txtTimKHKeyPressed
+
+    private void txtTimKHKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKHKeyReleased
+        // TODO add your handling code here:
+        fillTableKH();
+    }//GEN-LAST:event_txtTimKHKeyReleased
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tblSanPhamMouseClicked
         // TODO add your handling code here:
@@ -192,35 +222,43 @@ public class BanHangPanel extends javax.swing.JPanel {
     private void init() {
         taoHoaDon();
         fillTableSP();
-        fillTableHD();
+        fillTableKH();
         chonSP();
         xoaSP();
         chonKH();
+        rowKH = -1;
+        txtTimKH.setText("");
+
+    }
+    public static int getMaKH() {
+        if(rowKH != -1){
+            int maKH = (int) tblKhachHang.getValueAt(rowKH, 0);
+            return maKH;
+        }
+        return -1;
     }
 
-    private SanPhamDAO daoSP = new SanPhamDAO();
-    private HoaDonDAO daoHD = new HoaDonDAO();
-    private HDCTDAO daoHDCT = new HDCTDAO();
-    private KhachHangDAO daoKH = new KhachHangDAO();
+    static int rowKH = -1;
+    private static SanPhamDAO daoSP = new SanPhamDAO();
+    private static KhachHangDAO daoKH = new KhachHangDAO();
 
 
-    private void fillTableHD() {
+
+    public static void fillTableKH() {
         try {
             String header[] = { "Mã KH", "Tên KH", "SĐT", "Điểm tích lũy"};
             DefaultTableModel model = new DefaultTableModel(header, 0);
             tblKhachHang.setModel(model);
-            List<KhachHang> list = daoKH.selectAll();
-            for (KhachHang kh : list) {
-                Object[] row = {kh.getMaKH(),kh.getTenKH(),kh.getSdt(),kh.getDiem()};
-                model.addRow(row);
+            List<Object[]> list = daoKH.selectByTimKiem(txtTimKH.getText());
+            for (Object[] kh : list) {
+                model.addRow(kh);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Message.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
 
-    private void fillTableSP() {
+    static void fillTableSP() {
         String header[] = { "Mã SP", "Tên SP", "Mã Loại", "Size", "Trạng thái", "Số Lượng", "Hình ảnh" };
         DefaultTableModel model = new DefaultTableModel(header, 0);
         tblSanPham.setModel(model);
@@ -237,14 +275,13 @@ public class BanHangPanel extends javax.swing.JPanel {
                 ;
             }
         } catch (Exception e) {
-            Message.alert(this, "Lỗi truy vấn dữ liệu!");
             e.printStackTrace();
 
         }
     }
 
-    int row = -1;
-    ArrayList<SanPham> listSP = new ArrayList<>();
+    static int row = -1;
+    public static ArrayList<SanPham> listSP = new ArrayList<>();
 
     private void chonSP() {
         final JPopupMenu popupMenu = new JPopupMenu();
@@ -350,9 +387,9 @@ public class BanHangPanel extends javax.swing.JPanel {
     private javax.swing.JPanel pnlSanPham;
     private javax.swing.JPanel pnlTaoHD;
     private javax.swing.JPanel pnlTrangThaiHoaDon5;
-    private javax.swing.JTable tblKhachHang;
-    private javax.swing.JTable tblSanPham;
-    private javax.swing.JTextField txtTimKH;
+    private static javax.swing.JTable tblKhachHang;
+    private static javax.swing.JTable tblSanPham;
+    private static javax.swing.JTextField txtTimKH;
     // End of variables declaration//GEN-END:variables
 
 }

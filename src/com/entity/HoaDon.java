@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class HoaDon {
     private int maHD;
-    private int maKH;
+    private int maKH = -1;
     private String maNV;
-    private String trangThai;
+    private String trangThai = "Đã thanh toán";
     private Date ngayTao;
     private String pttt;
     private Double tongTien;

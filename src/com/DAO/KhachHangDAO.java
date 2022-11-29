@@ -26,6 +26,17 @@ public class KhachHangDAO extends ShopFrameDAO<KhachHang,Integer>{
         }
         
     }
+    public int insertGetID(KhachHang entity) {
+        // TODO Auto-generated method stub
+        try {
+            return  Jdbc.getIdKhachHang(sqlInsert,entity.getTenKH(),entity.getSdt(),entity.getDiem());
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return -1;
+        }
+        
+    }
 
     @Override
     public void update(KhachHang entity) {
@@ -59,12 +70,36 @@ public class KhachHangDAO extends ShopFrameDAO<KhachHang,Integer>{
         return list;
     }
 
+
     @Override
     public KhachHang selectByID(Integer key) {
         // TODO Auto-generated method stub
         List<KhachHang> list = new ArrayList<KhachHang>();
         list = selectBySQL(sqlSelectByID, key);
         return list.get(0);
+    }
+    private List<Object[]> getListofArrayList(String sql,String[] columns,Object...args){
+        try {
+            List<Object[]> list = new ArrayList<Object[]>();
+            ResultSet rs = Jdbc.query(sql, args);
+            while(rs.next()) {
+                Object[] vals = new Object[columns.length];
+                for(int i = 0; i < vals.length; i++){
+                    vals[i] = rs.getObject(columns[i]);
+                }
+                list.add(vals);
+            }
+            return list;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public List<Object[]> selectByTimKiem(String key) {
+        String sql = "{CALL sp_timKiemKH(?)}";
+        String columns[] = {"maKH","tenKH","sdt","diem"};
+        return this.getListofArrayList(sql, columns, key);
     }
 
     @Override

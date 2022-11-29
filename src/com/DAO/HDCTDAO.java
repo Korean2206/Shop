@@ -11,7 +11,7 @@ import com.utils.Jdbc;
 public class HDCTDAO extends ShopFrameDAO<HDCT,Integer> {
 
     private final String sqlInsert = "INSERT INTO HDCT(MaHD,MaSP,DonGia,SoLuong) values(?,?,?,?);";
-    private final String sqlUpdate = "UPDATE HDCT set MaHD=?,MaKH=?,MaSP=?,DonGia=?,SoLuong=? where MaHDCT =?";
+    private final String sqlUpdate = "UPDATE HDCT set MaHD=?,MaSP=?,DonGia=?,SoLuong=? where MaHDCT =?";
     private final String sqlDelete = "DELETE FROM HDCT where MaHDCT =?";
     private final String sqlSelectAll = "SELECT * FROM HDCT ";
     private final String sqlSelectByID = "SELECT * FROM HDCT where MaHDCT =?";
