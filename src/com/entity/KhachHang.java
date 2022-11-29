@@ -1,17 +1,16 @@
 package com.entity;
 
 public class KhachHang {
-    private String maKH;
+    private int maKH;
     private String tenKH;
-    private boolean gioiTinh;
     private String sdt;
-    private int diem;
+    private double diem;
 
-    public String getMaKH() {
+    public int getMaKH() {
         return this.maKH;
     }
 
-    public void setMaKH(String maKH) {
+    public void setMaKH(int maKH) {
         this.maKH = maKH;
     }
 
@@ -23,17 +22,6 @@ public class KhachHang {
         this.tenKH = tenKH;
     }
 
-    public boolean isGioiTinh() {
-        return this.gioiTinh;
-    }
-
-    public boolean getGioiTinh() {
-        return this.gioiTinh;
-    }
-
-    public void setGioiTinh(boolean gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
 
     public String getSdt() {
         return this.sdt;
@@ -43,11 +31,11 @@ public class KhachHang {
         this.sdt = sdt;
     }
 
-    public int getDiem() {
+    public double getDiem() {
         return this.diem;
     }
 
-    public void setDiem(int diem) {
+    public void setDiem(double diem) {
         this.diem = diem;
     }
 

@@ -8,10 +8,10 @@ import java.util.List;
 import com.entity.KhachHang;
 import com.utils.Jdbc;
 
-public class KhachHangDAO extends ShopFrameDAO<KhachHang,String>{
+public class KhachHangDAO extends ShopFrameDAO<KhachHang,Integer>{
 
-    private final String sqlInsert = "INSERT INTO KhachHang values(?,?,?,?,?)";
-    private final String sqlUpdate = "UPDATE KhachHang set TenKH=?,GioiTinh=?,SDT=?,Diem=? where MaKH =?";
+    private final String sqlInsert = "INSERT INTO KhachHang(tenKH,SDT,diem) values(?,?,?)";
+    private final String sqlUpdate = "UPDATE KhachHang set TenKH=?,SDT=?,Diem=? where MaKH =?";
     private final String sqlDelete = "DELETE FROM KhachHang where MaKH =?";
     private final String sqlSelectAll = "SELECT * FROM KhachHang ";
     private final String sqlSelectByID = "SELECT * FROM KhachHang where MaKH =?";
@@ -19,7 +19,7 @@ public class KhachHangDAO extends ShopFrameDAO<KhachHang,String>{
     public void insert(KhachHang entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlInsert,entity.getMaKH(),entity.getTenKH(),entity.getGioiTinh(),entity.getSdt(),entity.getDiem());
+            Jdbc.update(sqlInsert,entity.getTenKH(),entity.getSdt(),entity.getDiem());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class KhachHangDAO extends ShopFrameDAO<KhachHang,String>{
     public void update(KhachHang entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlUpdate,entity.getTenKH(),entity.getGioiTinh(),entity.getSdt(),entity.getDiem(),entity.getMaKH());
+            Jdbc.update(sqlUpdate,entity.getTenKH(),entity.getSdt(),entity.getDiem(),entity.getMaKH());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -40,7 +40,7 @@ public class KhachHangDAO extends ShopFrameDAO<KhachHang,String>{
     }
 
     @Override
-    public void delete( String key) {
+    public void delete(Integer key) {
         // TODO Auto-generated method stub
         try {
             Jdbc.update(sqlDelete,key);
@@ -60,7 +60,7 @@ public class KhachHangDAO extends ShopFrameDAO<KhachHang,String>{
     }
 
     @Override
-    public KhachHang selectByID(String key) {
+    public KhachHang selectByID(Integer key) {
         // TODO Auto-generated method stub
         List<KhachHang> list = new ArrayList<KhachHang>();
         list = selectBySQL(sqlSelectByID, key);
@@ -75,9 +75,8 @@ public class KhachHangDAO extends ShopFrameDAO<KhachHang,String>{
             ResultSet rs = Jdbc.query(sql, args);
             while (rs.next()) {
             KhachHang entity = new KhachHang();
-            entity.setMaKH(rs.getString("MaKH"));
+            entity.setMaKH(rs.getInt("MaKH"));
             entity.setTenKH(rs.getString("TenKH"));
-            entity.setGioiTinh(rs.getBoolean("GioiTinh"));
             entity.setSdt(rs.getString("SDT"));
             entity.setDiem(rs.getInt("Diem"));
             list.add(entity);

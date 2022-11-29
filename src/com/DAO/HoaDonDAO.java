@@ -75,7 +75,7 @@ public class HoaDonDAO extends ShopFrameDAO<HoaDon,Integer> {
             while (rs.next()) {
             HoaDon entity = new HoaDon();
             entity.setMaHD(rs.getInt("MaHD"));
-            entity.setMaKH(rs.getString("MaKH"));
+            entity.setMaKH(rs.getInt("MaKH"));
             entity.setMaNV(rs.getString("MaNV"));
             entity.setTrangThai(rs.getString("TrangThai"));
             entity.setNgayTao(rs.getDate("NgayTao"));

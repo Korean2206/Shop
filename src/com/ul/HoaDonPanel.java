@@ -1,6 +1,8 @@
 package com.ul;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -81,6 +83,11 @@ public class HoaDonPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblSoLuongSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSoLuongSPMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSoLuongSP);
 
         txtGhiChu.setText("Ghi chú :");
@@ -96,6 +103,24 @@ public class HoaDonPanel extends javax.swing.JPanel {
         cboPttt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setText("Tiền khách trả :");
+
+        txtTienKhachTra.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtTienKhachTraInputMethodTextChanged(evt);
+            }
+        });
+        txtTienKhachTra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTienKhachTraActionPerformed(evt);
+            }
+        });
+        txtTienKhachTra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTienKhachTraKeyTyped(evt);
+            }
+        });
 
         jLabel9.setText("Tiền thừa :");
 
@@ -203,6 +228,27 @@ public class HoaDonPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
+    private void tblSoLuongSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSoLuongSPMouseClicked
+        // TODO add your handling code here:
+        txtTongTien.setText("" + getTongTien());
+    }//GEN-LAST:event_tblSoLuongSPMouseClicked
+
+    private void txtTienKhachTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTienKhachTraActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtTienKhachTraActionPerformed
+
+    private void txtTienKhachTraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachTraKeyTyped
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtTienKhachTraKeyTyped
+
+    private void txtTienKhachTraInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtTienKhachTraInputMethodTextChanged
+        // TODO add your handling code here:
+        txtTienThua.setText("" + getTienThua());
+
+    }//GEN-LAST:event_txtTienKhachTraInputMethodTextChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuy;
@@ -218,24 +264,36 @@ public class HoaDonPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTable tblSoLuongSP;
-    private javax.swing.JTextField txtDiem;
+    private static javax.swing.JTextField txtDiem;
     private javax.swing.JTextArea txtGhiCHu;
     private javax.swing.JLabel txtGhiChu;
-    private javax.swing.JTextField txtSDT;
-    private javax.swing.JTextField txtTen;
+    private static javax.swing.JTextField txtSDT;
+    private static javax.swing.JTextField txtTen;
     private javax.swing.JTextField txtTienKhachTra;
     private javax.swing.JTextField txtTienThua;
-    private javax.swing.JTextField txtTongTien;
+    protected static javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
     private void init() {
         fillCBOHTTT();
         fillTableSL();
     }
 
+    private Double getTienThua() {
+        try {
+            Double tongTien = Double.parseDouble(txtTongTien.getText());
+            Double tienKhachDua = Double.parseDouble(txtTienKhachTra.getText());
+        return (tienKhachDua - tongTien);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return null;
+        }
+
+    }
     private void fillTableSL() {
         String []header = {"Mã SP","Tên SP","Size","Đơn Giá","Số Lượng","Tổng tiền"};
         DefaultTableModel model = new DefaultTableModel(header,0);
-        HoaDonPanel.tblSoLuongSP.setModel(model);
+        tblSoLuongSP.setModel(model);
     }
     private void fillCBOHTTT() {
         String []list = {"Tiền mặt","Chuyển khoản"};
@@ -245,17 +303,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
         }
     }
     KhachHangDAO daoKH = new KhachHangDAO();
-    private KhachHang getInfor(String maKH) {
-        KhachHang kh = daoKH.selectByID(maKH);
-        return kh;
-    }
-    private void setFormHDCT(HDCT hdct) {
-        KhachHang kh = getInfor(hdct.getMaKH());
-        txtSDT.setText(kh.getSdt());
-        txtTen.setText(kh.getTenKH());
-        txtDiem.setText(String.valueOf(kh.getDiem()));
-        
-    }
+    
     private void setFromHD(HoaDon hd){
         txtGhiCHu.setText(hd.getMoTa());
         txtTongTien.setText(String.valueOf(hd.getTongTien()));
@@ -263,6 +311,22 @@ public class HoaDonPanel extends javax.swing.JPanel {
         txtTienKhachTra.setText(String.valueOf(hd.getTienKhachDua()));
         txtTienThua.setText(String.valueOf(hd.getTienThua()));
     }
+    public static void setFormKhachHang(KhachHang kh) {
+        txtSDT.setText(kh.getSdt());
+        txtTen.setText(kh.getTenKH());
+        txtDiem.setText(String.valueOf(kh.getDiem()));
+    }
+    public static Double getTongTien() {
+        int rowCount = tblSoLuongSP.getRowCount();
+        Double tongTien = 0.;
+        for(int i = 0; i < rowCount; i++) {
+            Double tien = (Double) tblSoLuongSP.getValueAt(i, 5);
+            tongTien += tien;
+        }
+        return tongTien;
+    }
+    
+    
     private HoaDon getFormHD() {
         HoaDon hd = new HoaDon();
         hd.setMaNV(Auth.user.getMaNV());
@@ -271,23 +335,30 @@ public class HoaDonPanel extends javax.swing.JPanel {
         hd.setTienKhachDua(Double.parseDouble(txtTienKhachTra.getText()));
         hd.setTienThua(Double.parseDouble(txtTienThua.getText()));
         hd.setPttt(cboPttt.getSelectedItem().toString());
-        hd.setMaKH(txtSDT.getText());
+        // hd.setMaKH(kh.getMaKH());
         hd.setMoTa(txtGhiCHu.getText());
         return hd;
     }
-    private HDCT getFormHDCT(HoaDon hd) {
-        HDCT hdct = new HDCT();
-        hdct.setMaHD(hd.getMaHD());
-        hdct.setMaKH(TOOL_TIP_TEXT_KEY);
-        hdct.setMaSP(TOOL_TIP_TEXT_KEY);
-        hdct.setSoLuong(ABORT);
-        hdct.setDonGia(ABORT);
-        return hdct;
+    private List<HDCT> getFormHDCT(HoaDon hd) {
+        
+        int rowCount = tblSoLuongSP.getRowCount();
+        List <HDCT> list = new ArrayList<HDCT>();
+        for(int i = 0; i < rowCount; i++) {
+            HDCT hdct = new HDCT();
+            hdct.setMaHD(hd.getMaHD());
+            hdct.setMaSP(tblSoLuongSP.getValueAt(i, 0).toString());
+            hdct.setDonGia((Double)tblSoLuongSP.getValueAt(i, 3));
+            hdct.setSoLuong((int)tblSoLuongSP.getValueAt(i, 4));
+            list.add(hdct);
+        }
+        return list;
+        
+        
     }
     private void clearForm(){
         HoaDon hd = new HoaDon();
-        HDCT hdct = new HDCT();
-        setFormHDCT(hdct);
+        KhachHang kh = new KhachHang();
+        setFormKhachHang(kh);
         setFromHD(hd);
     }
     private HoaDonDAO daoHD = new HoaDonDAO();
@@ -295,9 +366,10 @@ public class HoaDonPanel extends javax.swing.JPanel {
     private SanPhamDAO daoSP = new SanPhamDAO();
     private void insert() {
         HoaDon hd = getFormHD();
+        List<HDCT> hdctList = getFormHDCT(hd);
         try{
-            
-
+            daoHD.insert(hd);
+            daoHDCT.insertList(hdctList);
             Message.alert(this, "Đã thanh toán");
         }catch (Exception e) {
             e.printStackTrace();

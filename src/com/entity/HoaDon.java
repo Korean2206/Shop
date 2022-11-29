@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class HoaDon {
     private int maHD;
-    private String maKH;
+    private int maKH;
     private String maNV;
     private String trangThai;
     private Date ngayTao;
@@ -54,11 +54,11 @@ public class HoaDon {
         this.maHD = maHD;
     }
 
-    public String getMaKH() {
+    public int getMaKH() {
         return this.maKH;
     }
 
-    public void setMaKH(String maKH) {
+    public void setMaKH(int maKH) {
         this.maKH = maKH;
     }
 

@@ -3,7 +3,6 @@ package com.entity;
 public class HDCT {
     private int maHDCT;
     private int maHD;
-    private String maKH;
     private String maSP;
     private double donGia;
     private int soLuong;
@@ -24,13 +23,6 @@ public class HDCT {
         this.maHD = maHD;
     }
 
-    public String getMaKH() {
-        return this.maKH;
-    }
-
-    public void setMaKH(String maKH) {
-        this.maKH = maKH;
-    }
 
     public String getMaSP() {
         return this.maSP;

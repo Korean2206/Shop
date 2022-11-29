@@ -365,7 +365,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         try {
             
             List<Object[]> list = daoTK.getDoanhThuTheoTG(XDate.toDate("2022-11-15","dd-MM-yyyy"), XDate.toDate("2022-11-15","dd-MM-yyyy"));
-            lblTienHN.setText(list.get(1).toString());
+            lblTienHN.setText(list.get(0).toString());
             lblDaBanHN.setText(list.get(0).toString());
         } catch (Exception e) {
             // TODO: handle exception
