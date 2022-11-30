@@ -4,8 +4,14 @@
  */
 package com.ul;
 
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -65,6 +71,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         tblDoanhThu = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         cboLoai = new javax.swing.JComboBox<>();
+        btnLoc = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -72,7 +79,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("TUẦN");
 
-        lblTienTuan.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblTienTuan.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblTienTuan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTienTuan.setText("TIỀN");
 
@@ -97,7 +104,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                 .addComponent(lblTienTuan)
                 .addGap(36, 36, 36)
                 .addComponent(lblDaBanTuan)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 204));
@@ -106,7 +113,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("TÙY CHỌN");
 
-        lblTienTuyChon.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblTienTuyChon.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblTienTuyChon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTienTuyChon.setText("TIỀN");
 
@@ -140,7 +147,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("HÔM NAY");
 
-        lblTienHN.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblTienHN.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblTienHN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTienHN.setText("TIỀN");
 
@@ -165,7 +172,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                 .addComponent(lblTienHN)
                 .addGap(36, 36, 36)
                 .addComponent(lblDaBanHN)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         btnXuatTK.setText("Xuất TK");
@@ -180,7 +187,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("THÁNG");
 
-        lblTienThang.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        lblTienThang.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblTienThang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTienThang.setText("TIỀN");
 
@@ -257,6 +264,13 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        btnLoc.setText("Lọc");
+        btnLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -264,7 +278,9 @@ public class DoanhThuPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -273,16 +289,21 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(dcFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2)
-                                .addComponent(dcTo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnXuatTK))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dcTo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dcFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnLoc)
+                                    .addComponent(btnXuatTK))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,6 +323,8 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dcTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLoc)
                         .addGap(18, 18, 18)
                         .addComponent(btnXuatTK)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -315,11 +338,22 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         fillTable();
     }//GEN-LAST:event_cboLoaiActionPerformed
 
+    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
+        // TODO add your handling code here:
+        tienTuyChon();
+    }//GEN-LAST:event_btnLocActionPerformed
+
     private void init() {
+        dcFrom.setDate(new Date());
+        dcTo.setDate(new Date());
         fillCBO();
         tienHN();
+        tienTuan();
+        tienThang();
+        tienTuyChon();
         fillTable();
         cboLoai.setSelectedIndex(-1);
+        
     }
 
     LoaiDAO daoLoai = new LoaiDAO();
@@ -332,7 +366,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         }
         
     }
-    ThongKeDAO daoTK = new ThongKeDAO();
+    static ThongKeDAO daoTK = new ThongKeDAO();
     private void fillTable() {
         String header[] = { "Mã Loại","Tên Loại","Đã bán", "Doanh thu"};
         DefaultTableModel model = new DefaultTableModel(header, 0);
@@ -360,21 +394,115 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         
         
     }
-    private void tienHN() {
+    static void tienHN() {
         Date currentDate = new Date();
         try {
             
-            List<Object[]> list = daoTK.getDoanhThuTheoTG(XDate.toDate("2022-11-15","dd-MM-yyyy"), XDate.toDate("2022-11-15","dd-MM-yyyy"));
-            lblTienHN.setText(list.get(0).toString());
-            lblDaBanHN.setText(list.get(0).toString());
+            Object[] o = daoTK.getDoanhThuTheoTG(currentDate,currentDate);
+            if(o[1] == null)
+                lblTienHN.setText("Doanh thu : 0");
+            else 
+                lblTienHN.setText("Doanh thu : " + o[1].toString());
+            if(o[0] == null)
+                lblDaBanHN.setText("Đã bán : 0");
+            else    
+                lblDaBanHN.setText("Đã bán : " + o[0].toString());
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
 
     }
+    static void tienTuan() {
+        System.out.println("Test");
+        Date from = getFirstDateOfWeek();
+        Date to = getLastDateOfWeek();
+        try {
+            Object[] o = daoTK.getDoanhThuTheoTG(from,to);
+            if(o[0] == null)
+                lblDaBanTuan.setText("0");
+            else 
+                lblDaBanTuan.setText("Đã bán : " + o[0].toString());
+            if(o[1] == null)
+                lblTienTuan.setText("Doanh thu : 0");
+            else    
+                lblTienTuan.setText("Doanh thu : " + o[1].toString());
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+    private static Date getFirstDateOfMonth() {
+        Calendar c = Calendar.getInstance();   // this takes current date
+        c.set(Calendar.DAY_OF_MONTH, 1);
+        return c.getTime();
+    }
+    private static Date getLastDateOfMonth() {
+        Calendar c = Calendar.getInstance();   // this takes current date
+        int days = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+        c.set(Calendar.DAY_OF_MONTH, days);
+        return c.getTime();
+    }
+    static void tienThang() {
+
+        Date from = getFirstDateOfMonth();
+        Date to = getLastDateOfMonth();
+        try {
+            
+            Object[] o = daoTK.getDoanhThuTheoTG(from,to);
+            if(o[0] == null)
+                lblDaBanThang.setText("Đã bán : 0");
+            else 
+                lblDaBanThang.setText("Đã bán : " + o[0].toString());
+            if(o[1] == null)
+                lblTienThang.setText("Doanh thu : 0");
+            else    
+                lblTienThang.setText("Doanh thu : " + o[1].toString());
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+    private static int getCurrentWeek() {
+        LocalDate date = LocalDate.now();
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+        return date.get(weekFields.weekOfWeekBasedYear());
+    }
+    private static Date getFirstDateOfWeek(){
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.WEEK_OF_YEAR, getCurrentWeek());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        return cal.getTime();
+    }
+    private static Date getLastDateOfWeek(){
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.WEEK_OF_YEAR, getCurrentWeek());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+        return cal.getTime();
+    }
+    private void tienTuyChon() {
+
+        Date from = dcFrom.getDate();
+        Date to = dcTo.getDate();
+        try {
+            
+            Object[] o = daoTK.getDoanhThuTheoTG(from,to);
+            if(o[0] == null)
+                lblDaBanTuyChon.setText("Đã bán : 0");
+            else 
+                lblDaBanTuyChon.setText("Đã bán : " + o[0].toString());
+            if(o[1] == null)
+                lblTienTuyChon.setText("Doanh thu : 0");
+            else    
+                lblTienTuyChon.setText("Doanh thu : " + o[1].toString());
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLoc;
     private javax.swing.JButton btnXuatTK;
     private javax.swing.JComboBox<String> cboLoai;
     private com.toedter.calendar.JDateChooser dcFrom;
@@ -392,13 +520,13 @@ public class DoanhThuPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblDaBanHN;
-    private javax.swing.JLabel lblDaBanThang;
-    private javax.swing.JLabel lblDaBanTuan;
+    private static javax.swing.JLabel lblDaBanHN;
+    private static javax.swing.JLabel lblDaBanThang;
+    private static javax.swing.JLabel lblDaBanTuan;
     private javax.swing.JLabel lblDaBanTuyChon;
-    private javax.swing.JLabel lblTienHN;
-    private javax.swing.JLabel lblTienThang;
-    private javax.swing.JLabel lblTienTuan;
+    private static javax.swing.JLabel lblTienHN;
+    private static javax.swing.JLabel lblTienThang;
+    private static javax.swing.JLabel lblTienTuan;
     private javax.swing.JLabel lblTienTuyChon;
     private javax.swing.JTable tblDoanhThu;
     // End of variables declaration//GEN-END:variables

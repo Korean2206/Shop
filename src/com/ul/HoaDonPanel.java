@@ -224,6 +224,10 @@ public class HoaDonPanel extends javax.swing.JPanel {
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
         insert();
+        DoanhThuPanel.tienHN();
+        DoanhThuPanel.tienTuan();
+        DoanhThuPanel.tienThang();
+        
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void tblSoLuongSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSoLuongSPMouseClicked

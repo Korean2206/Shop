@@ -19,8 +19,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -28,20 +31,28 @@
                       <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="dcFrom" min="-2" pref="118" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="dcTo" alignment="1" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="btnXuatTK" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="dcTo" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="dcFrom" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="btnLoc" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnXuatTK" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,13 +61,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jPanel4" max="32767" attributes="0"/>
                       <Component id="jPanel2" max="32767" attributes="0"/>
                       <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
                       <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dcFrom" min="-2" max="-2" attributes="0"/>
@@ -64,6 +75,8 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dcTo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnLoc" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnXuatTK" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -100,7 +113,7 @@
                   <Component id="lblTienTuan" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="lblDaBanTuan" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,11 +131,14 @@
         <Component class="javax.swing.JLabel" name="lblTienTuan">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="SansSerif" size="18" style="1"/>
+              <Font name="SansSerif" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="TI&#x1ec0;N"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDaBanTuan">
           <Properties>
@@ -132,6 +148,9 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="&#x110;&#xc3; B&#xc1;N :"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -177,7 +196,7 @@
         <Component class="javax.swing.JLabel" name="lblTienTuyChon">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="SansSerif" size="18" style="1"/>
+              <Font name="SansSerif" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="TI&#x1ec0;N"/>
@@ -218,7 +237,7 @@
                   <Component id="lblTienHN" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="lblDaBanHN" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -236,11 +255,14 @@
         <Component class="javax.swing.JLabel" name="lblTienHN">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="SansSerif" size="18" style="1"/>
+              <Font name="SansSerif" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="TI&#x1ec0;N"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDaBanHN">
           <Properties>
@@ -250,6 +272,9 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="&#x110;&#xc3; B&#xc1;N :"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -314,11 +339,14 @@
         <Component class="javax.swing.JLabel" name="lblTienThang">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="SansSerif" size="18" style="1"/>
+              <Font name="SansSerif" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="TI&#x1ec0;N"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDaBanThang">
           <Properties>
@@ -328,6 +356,9 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="&#x110;&#xc3; B&#xc1;N :"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -413,5 +444,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btnLoc">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="L&#x1ecd;c"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLocActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
