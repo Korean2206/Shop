@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.DAO.HoaDonDAO;
 import com.DAO.KhachHangDAO;
+import com.DAO.KhuyenMaiDAO;
 import com.DAO.HDCTDAO;
 import com.DAO.SanPhamDAO;
 import com.entity.HDCT;
@@ -241,7 +243,7 @@ public class BanHangPanel extends javax.swing.JPanel {
     static int rowKH = -1;
     private static SanPhamDAO daoSP = new SanPhamDAO();
     private static KhachHangDAO daoKH = new KhachHangDAO();
-
+    private KhuyenMaiDAO daoKM = new KhuyenMaiDAO();
 
 
     public static void fillTableKH() {
@@ -344,13 +346,17 @@ public class BanHangPanel extends javax.swing.JPanel {
     }
 
     private void fillTableSL(List<SanPham> list) {
-        String[] header = { "Mã SP", "Tên SP", "Size", "Đơn Giá", "Số Lượng", "Tổng tiền" };
+        Date now = new Date();
+        String[] header = { "Mã SP", "Tên SP", "Size", "Đơn Giá","Giảm Giá", "Số Lượng", "Tổng tiền" };
         DefaultTableModel model = new DefaultTableModel(header, 0);
         HoaDonPanel.tblSoLuongSP.setModel(model);
         for (SanPham sp : list) {
             int soLuong = 1;
-            Double tt = soLuong * sp.getGiaSP();
-            Object[] row = { sp.getMaSP(), sp.getTenSP(), sp.getSize(), sp.getGiaSP(), soLuong, tt };
+            Double ptkm = daoKM.getPhanTramKhuyenMai(sp.getMaSP(), now);
+            if(ptkm == null) ptkm = 0.;
+            Double giaSP = sp.getGiaSP() - (sp.getGiaSP() * (ptkm/100));
+            Double tt = giaSP * soLuong;
+            Object[] row = { sp.getMaSP(), sp.getTenSP(), sp.getSize(), giaSP,ptkm + "%", soLuong, tt };
             model.addRow(row);
         }
     }

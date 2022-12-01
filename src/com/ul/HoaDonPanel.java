@@ -9,10 +9,12 @@ import java.awt.Color;
 import com.DAO.HDCTDAO;
 import com.DAO.HoaDonDAO;
 import com.DAO.KhachHangDAO;
+import com.DAO.KhuyenMaiDAO;
 import com.DAO.SanPhamDAO;
 import com.entity.HDCT;
 import com.entity.HoaDon;
 import com.entity.KhachHang;
+import com.entity.KhuyenMai;
 import com.entity.SanPham;
 import com.utils.Auth;
 import com.utils.Message;
@@ -278,7 +280,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
     private HoaDonDAO daoHD = new HoaDonDAO();
     private HDCTDAO daoHDCT = new HDCTDAO();
     private KhachHangDAO daoKH = new KhachHangDAO();
-
+    private KhuyenMaiDAO daoKM = new KhuyenMaiDAO();	
     private void checkTien() {
         double tienThua = getTienThua();
         Color errorColor,defaultColor;
@@ -306,13 +308,16 @@ public class HoaDonPanel extends javax.swing.JPanel {
 
     }
     private void fillTableSL(List<SanPham> list) {
-        String []header = {"Mã SP","Tên SP","Size","Đơn Giá","Số Lượng","Tổng tiền"};
+        Date now = new Date();
+        String []header = {"Mã SP","Tên SP","Size","Đơn Giá","Giảm giá ","Số Lượng","Tổng tiền"};
         DefaultTableModel model = new DefaultTableModel(header,0);
         tblSoLuongSP.setModel(model);
         for (SanPham sp : list) {
             int soLuong = 1;
+            Double ptkm = daoKM.getPhanTramKhuyenMai(sp.getMaSP(), now);
+            if(ptkm == null) ptkm = 0.;
             Double tt = soLuong * sp.getGiaSP();
-            Object[] row = { sp.getMaSP(), sp.getTenSP(), sp.getSize(), sp.getGiaSP(), soLuong, tt };
+            Object[] row = { sp.getMaSP(), sp.getTenSP(), sp.getSize(), sp.getGiaSP(),ptkm, soLuong, tt };
             model.addRow(row);
         }
     }
@@ -349,7 +354,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
         int rowCount = tblSoLuongSP.getRowCount();
         Double tongTien = 0.;
         for(int i = 0; i < rowCount; i++) {
-            Double tien = (Double) tblSoLuongSP.getValueAt(i, 5);
+            Double tien = (Double) tblSoLuongSP.getValueAt(i, 6);
             tongTien += tien;
         }
         return tongTien;
@@ -377,7 +382,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
             hdct.setMaHD(id);
             hdct.setMaSP(tblSoLuongSP.getValueAt(i, 0).toString());
             hdct.setDonGia((Double)tblSoLuongSP.getValueAt(i, 3));
-            hdct.setSoLuong((int)tblSoLuongSP.getValueAt(i, 4));
+            hdct.setSoLuong((int)tblSoLuongSP.getValueAt(i, 5));
             list.add(hdct);
         }
         return list;
