@@ -3,7 +3,7 @@ package com.entity;
 public class Loai {
     private String maLoai;
     private String tenLoai;
-    private Boolean danhCho;
+    private Boolean danhCho = true;
 
     public String getMaLoai() {
         return this.maLoai;
