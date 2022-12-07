@@ -166,7 +166,8 @@ public class HDCTJDIalog extends javax.swing.JDialog {
     private javax.swing.JTable tblSP;
     // End of variables declaration//GEN-END:variables
 
-    public static int maHD = 16;
+    public static int maHD;
+    public static int row;
     private HDCTDAO daoHDCT = new HDCTDAO();
     private void init() {
         this.setTitle("Thông tin hóa đơn");
@@ -177,7 +178,7 @@ public class HDCTJDIalog extends javax.swing.JDialog {
     }
     private void setForm() {
         lblMaHD.setText(maHD+"");
-        lblTongTien.setText(tblSP.getValueAt(0, 2) + "");
+        lblTongTien.setText(TKHoaDonPanel.tblHoaDon.getValueAt(row,6) + "");
     }
 
     private void fillTable() {
@@ -193,13 +194,5 @@ public class HDCTJDIalog extends javax.swing.JDialog {
             e.printStackTrace();
             XMessage.alert(this, "Lỗi truy vấn dữ liệu");
         }
-    }
-    private Double getTongTien() {
-        int rowCount = tblSP.getRowCount();
-        Double tongTien = 0.;
-        for(int i = 0; i < rowCount; i++) {
-            tongTien += (Double) tblSP.getValueAt(i,2) * (Double) tblSP.getValueAt(i,3);
-        }
-        return tongTien;
     }
 }

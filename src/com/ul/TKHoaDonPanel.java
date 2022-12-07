@@ -207,6 +207,7 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(evt.getClickCount() == 2) {
             try {
+                HDCTJDIalog.row = tblHoaDon.getSelectedRow();
                 HDCTJDIalog.maHD = getMaHD(tblHoaDon.getSelectedRow());
                 new HDCTJDIalog(null, true).setVisible(true);
             } catch (Exception e) {
@@ -261,7 +262,7 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private static javax.swing.JTable tblHoaDon;
+    protected static javax.swing.JTable tblHoaDon;
     private static javax.swing.JTextField txtMaKH;
     // End of variables declaration//GEN-END:variables
     private void init() {
