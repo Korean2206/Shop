@@ -328,7 +328,8 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
-        TimKiem();
+        String query = txtTimKiem.getText();
+        find(query);
     }// GEN-LAST:event_btnTimKiemActionPerformed
 
     private void cboKMActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cboKMActionPerformed
@@ -378,20 +379,18 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
         this.updateStatus();
         fillCBOMaLoai();
         fillCBOKM();
-//        cboKM.setSelectedIndex(-1);
     }
 
     DefaultTableModel model;
 
     private void fillCBOKM() {
-//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboKM.getModel();
-        DefaultComboBoxModel model1 = new DefaultComboBoxModel();
-        cboKM.setModel(model1);
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        cboKM.setModel(model);
 //        model.removeAllElements();
         List<Loai> list = daoLoai.selectAll();
-        model1.addElement("None");
+        model.addElement("None");
         for (Loai l : list) {
-            model1.addElement(l.getMaLoai());
+            model.addElement(l.getMaLoai());
         }
     }
     
@@ -466,6 +465,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
         List<Loai> list = daoLoai.selectAll();
         for (Loai l : list) {
             model.addElement(l);
+            cboKM.setToolTipText(l.getTenLoai() + "");
         }
     }
 
@@ -536,21 +536,11 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
         return km;
     }
 
-    private void TimKiem() {
-        String header[] = {"Mã KM", "Tên KM", "Mã Loại KM", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị khuyến mãi"};
-        DefaultTableModel model = new DefaultTableModel(header, 0);
-        tblKhuyenMai.setModel(model);
-        List<KhuyenMai> list = daoKM.selectByName("%" + txtTimKiem.getText() + "%");
-        for (KhuyenMai km : list) {
-            Object[] row = {
-                km.getMaKM(),
-                km.getTenKM(),
-                km.getMaLoaiKM(),
-                km.getNgayBatDau(),
-                km.getNgayKetThuc(),
-                km.getPhanTram()};
-            model.addRow(row);
-        }
+    private void find(String query) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        tblKhuyenMai.setRowSorter(tr);
+
+        tr.setRowFilter(RowFilter.regexFilter(query));
     }
 
     private void setForm(KhuyenMai km) {
