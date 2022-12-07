@@ -6,10 +6,8 @@ package com.ul;
 
 import java.io.File;
 import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +18,7 @@ import com.entity.Loai;
 import com.entity.SanPham;
 import com.utils.XImage;
 import com.utils.Auth;
-import com.utils.Message;
+import com.utils.XMessage;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 
@@ -423,7 +421,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnThemLoai;
+    private static javax.swing.JButton btnThemLoai;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cboMaLoai;
@@ -464,14 +462,13 @@ public class SanPhamPanel extends javax.swing.JPanel {
         fillCBOLoai();
         fillCBOTrangThai();
         fillBoLoc();
-        showBtnThemLoai();
 
     }
     private void openLoaiJDialog() {
         new LoaiJDialog(new JFrame(),true).setVisible(true);
     }
 
-    private void showBtnThemLoai() {
+    static void showBtnThemLoai() {
         if(Auth.isManager()) {
             btnThemLoai.setEnabled(true);
         }
@@ -494,7 +491,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
                 model.addRow(row);
             }
         } catch (Exception e) {
-            Message.alert(this, "Lỗi truy vấn dữ liệu!");
+            XMessage.alert(this, "Lỗi truy vấn dữ liệu!");
             e.printStackTrace();
 
         }
@@ -593,9 +590,10 @@ public class SanPhamPanel extends javax.swing.JPanel {
             daoSP.insert(sp); // thêm mới
             this.fillTable(); // đỗ lại bảng
             this.clearForm(); // xóa trắng form
-            Message.alert(this, "Thêm mới thành công!");
+            BanHangPanel.fillTableSP();
+            XMessage.alert(this, "Thêm mới thành công!");
         } catch (Exception e) {
-            Message.alert(this, "Thêm mới thất bại!");
+            XMessage.alert(this, "Thêm mới thất bại!");
             e.printStackTrace();
         }
     }
@@ -605,9 +603,10 @@ public class SanPhamPanel extends javax.swing.JPanel {
         try {
             daoSP.update(model);
             this.fillTable();
-            Message.alert(this, "Update thành công");
+            BanHangPanel.fillTableSP();
+            XMessage.alert(this, "Update thành công");
         } catch (Exception e) {
-            Message.alert(this, "Update thất bại");
+            XMessage.alert(this, "Update thất bại");
             e.printStackTrace();
 
         }
@@ -619,10 +618,10 @@ public class SanPhamPanel extends javax.swing.JPanel {
             daoSP.delete(masp);
             fillTable();
             clearForm();
-            Message.alert(this, "Xóa thành công");
-
+            BanHangPanel.fillTableSP();
+            XMessage.alert(this, "Xóa thành công");
         } catch (Exception e) {
-            Message.alert(this, "Xóa thất bại");
+            XMessage.alert(this, "Xóa thất bại");
             e.printStackTrace();
 
         }

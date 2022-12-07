@@ -4,23 +4,17 @@
  */
 package com.ul;
 
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-
 import com.DAO.LoaiDAO;
 import com.DAO.ThongKeDAO;
 import com.entity.Loai;
-import com.utils.Message;
-import com.utils.XDate;
 
 /**
  *
@@ -367,7 +361,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         
     }
     static ThongKeDAO daoTK = new ThongKeDAO();
-    private void fillTable() {
+    static void fillTable() {
         String header[] = { "Mã Loại","Tên Loại","Đã bán", "Doanh thu"};
         DefaultTableModel model = new DefaultTableModel(header, 0);
         tblDoanhThu.setModel(model);
@@ -388,7 +382,6 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            Message.alert(this, "Lỗi dữ liệu");
 
         }
         
@@ -414,7 +407,6 @@ public class DoanhThuPanel extends javax.swing.JPanel {
 
     }
     static void tienTuan() {
-        System.out.println("Test");
         Date from = getFirstDateOfWeek();
         Date to = getLastDateOfWeek();
         try {
@@ -504,7 +496,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoc;
     private javax.swing.JButton btnXuatTK;
-    private javax.swing.JComboBox<String> cboLoai;
+    private static javax.swing.JComboBox<String> cboLoai;
     private com.toedter.calendar.JDateChooser dcFrom;
     private com.toedter.calendar.JDateChooser dcTo;
     private javax.swing.JLabel jLabel1;
@@ -528,6 +520,6 @@ public class DoanhThuPanel extends javax.swing.JPanel {
     private static javax.swing.JLabel lblTienThang;
     private static javax.swing.JLabel lblTienTuan;
     private javax.swing.JLabel lblTienTuyChon;
-    private javax.swing.JTable tblDoanhThu;
+    private static javax.swing.JTable tblDoanhThu;
     // End of variables declaration//GEN-END:variables
 }

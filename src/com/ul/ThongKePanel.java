@@ -4,8 +4,7 @@
  */
 package com.ul;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
 import com.utils.Hover;
 import com.utils.TabbedPane;
 

@@ -70,6 +70,12 @@ public class KhuyenMaiDAO extends ShopFrameDAO<KhuyenMai, String> {
         list = selectBySQL(sqlSelectByID, key);
         return list.get(0);
     }
+    public List<KhuyenMai> selectByMaLoai(String key){
+        String sql = "select * from khuyenMai where MaLoaiKM like %?%";
+        List<KhuyenMai> list = new ArrayList<KhuyenMai>();
+        list = selectBySQL(sql, key);
+        return list;
+    }
 
     public List<KhuyenMai> selectByName(String key) {
         // TODO Auto-generated method stub

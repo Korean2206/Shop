@@ -4,8 +4,6 @@
  */
 package com.ul;
 import java.awt.*;
-
-import javax.swing.UIManager;
 /**
  *
  * @author korea

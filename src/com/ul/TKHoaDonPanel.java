@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import com.DAO.HoaDonDAO;
 import com.DAO.ThongKeDAO;
 import com.entity.HoaDon;
-import com.utils.Message;
+import com.utils.XMessage;
 import com.utils.XDate;
 
 /**
@@ -255,8 +255,8 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoc;
     private javax.swing.JButton btnXuatTK;
-    private javax.swing.JComboBox<String> cboPttt;
-    private javax.swing.JComboBox<String> cboTT;
+    private static javax.swing.JComboBox<String> cboPttt;
+    private static javax.swing.JComboBox<String> cboTT;
     private com.toedter.calendar.JDateChooser dcFrom;
     private com.toedter.calendar.JDateChooser dcTo;
     private javax.swing.JLabel jLabel1;
@@ -267,8 +267,8 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblHoaDon;
-    private javax.swing.JTextField txtMaKH;
+    private static javax.swing.JTable tblHoaDon;
+    private static javax.swing.JTextField txtMaKH;
     // End of variables declaration//GEN-END:variables
     private void init() {
         fillCBOTT();
@@ -295,9 +295,9 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
         }
     }
 
-    private ThongKeDAO daoTK = new ThongKeDAO();
+    private static ThongKeDAO daoTK = new ThongKeDAO();
 
-    private void fillTableHD() {
+    static void fillTableHD() {
         try {
             String header[] = { "Mã NT", "Mã HD", "Mã KH", "Ngày tạo", "PTTT", "Trạng thái", "Tổng tiền" };
             DefaultTableModel model = new DefaultTableModel(header, 0);
@@ -312,7 +312,6 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            Message.alert(this, "Lỗi truy xuất dữ liệu!");
         }
     }
     private void fillTableHDTG() {
@@ -333,7 +332,7 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            Message.alert(this, "Lỗi truy xuất dữ liệu!");
+            XMessage.alert(this, "Lỗi truy xuất dữ liệu!");
         }
     }
 }

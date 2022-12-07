@@ -1,11 +1,15 @@
 package com.utils;
 
 import java.io.File;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+
+import com.ul.ForgotPassJDialog;
 
 public class XImage {
     
@@ -25,6 +29,12 @@ public class XImage {
     public static ImageIcon read(String filename){
         File path = new File("AnhSP",filename);
         return new ImageIcon(path.getAbsolutePath());
+    }
+
+    public static void setIconApp(JDialog parent) {
+        URL iconUrl = parent.getClass().getResource("/com/image/icons8_adidas_trefoil_95px.png");
+        ImageIcon icon = new ImageIcon(iconUrl);
+        parent.setIconImage(icon.getImage());
     }
     
     

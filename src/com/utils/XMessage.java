@@ -1,9 +1,9 @@
 package com.utils;
-import java.awt.Component;
 
+import java.awt.Component;
 import javax.swing.JOptionPane;
 
-public class Message {
+public class XMessage {
     public static void alert(Component parent, String msg) {
         JOptionPane.showMessageDialog(parent, msg, "SecondHand Shop", JOptionPane.INFORMATION_MESSAGE);
     }

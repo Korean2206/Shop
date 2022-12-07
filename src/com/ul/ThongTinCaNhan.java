@@ -10,7 +10,7 @@ import com.DAO.NhanVienDAO;
 import com.entity.NhanVien;
 import com.utils.Auth;
 import com.utils.Jdbc;
-import com.utils.Message;
+import com.utils.XMessage;
 
 /**
  *
@@ -319,12 +319,12 @@ public class ThongTinCaNhan extends javax.swing.JDialog {
         try {
             dao.update(nv);
             pnlNV.fillTable();
-            Message.alert(this, "Cập nhật thành công");
+            XMessage.alert(this, "Cập nhật thành công");
 
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            Message.alert(this, "Cập nhật thất bại");
+            XMessage.alert(this, "Cập nhật thất bại");
         }
     }
     private void huyCNTT() {
@@ -340,12 +340,12 @@ public class ThongTinCaNhan extends javax.swing.JDialog {
             try {
                 Jdbc.update(sql,mKM,Auth.user.getMaNV());
                 pnlNV.fillTable();
-                Message.alert(this, "Đổi mật khẩu thành công");
+                XMessage.alert(this, "Đổi mật khẩu thành công");
 
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            Message.alert(this, "Đổi mật khẩu thất bại");
+            XMessage.alert(this, "Đổi mật khẩu thất bại");
 
             }
         }

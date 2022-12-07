@@ -6,13 +6,11 @@ package com.ul;
 
 import java.net.URL;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
-
 import com.DAO.LoaiDAO;
 import com.entity.Loai;
-import com.utils.Message;
+import com.utils.XMessage;
 
 /**
  *
@@ -307,7 +305,7 @@ public class LoaiJDialog extends javax.swing.JDialog {
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            Message.alert(this,"Lỗi truy vấn dữ liệu!");
+            XMessage.alert(this,"Lỗi truy vấn dữ liệu!");
         }
         
     }
@@ -331,11 +329,11 @@ public class LoaiJDialog extends javax.swing.JDialog {
             daoLoai.insert(l);
             clearForm();
             fillTable();
-            Message.alert(this,"Thêm thành công");
+            XMessage.alert(this,"Thêm thành công");
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            Message.alert(this,"Thêm thất bại");
+            XMessage.alert(this,"Thêm thất bại");
         }
 
     }
@@ -344,11 +342,11 @@ public class LoaiJDialog extends javax.swing.JDialog {
             Loai l = getForm();
             daoLoai.update(l);
             fillTable();
-            Message.alert(this,"Cập nhật thành công");
+            XMessage.alert(this,"Cập nhật thành công");
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            Message.alert(this,"Cập nhật thất bại");
+            XMessage.alert(this,"Cập nhật thất bại");
         }
     }
     private void delete() {
@@ -357,11 +355,11 @@ public class LoaiJDialog extends javax.swing.JDialog {
             daoLoai.delete(l.getMaLoai());
             clearForm();
             fillTable();
-            Message.alert(this,"Xóa thành công");
+            XMessage.alert(this,"Xóa thành công");
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            Message.alert(this,"Xóa thất bại");
+            XMessage.alert(this,"Xóa thất bại");
         }
     }
     private void clearForm() {

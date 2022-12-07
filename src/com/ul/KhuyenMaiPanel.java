@@ -4,20 +4,15 @@
  */
 package com.ul;
 
-import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-
 import com.DAO.KhuyenMaiDAO;
 import com.DAO.LoaiDAO;
 import com.entity.KhuyenMai;
 import com.entity.Loai;
 import com.utils.Auth;
-import com.utils.Jdbc;
-import com.utils.Message;
+import com.utils.XMessage;
 
 /**
  *
@@ -323,6 +318,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
 
     private void cboKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboKMActionPerformed
         // TODO add your handling code here:
+        // fillTableKM();
     }//GEN-LAST:event_cboKMActionPerformed
 
     private void tblKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiMouseClicked
@@ -367,8 +363,43 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
         row = -1;
         this.updateStatus();
         fillCBOMaLoai();
+        fillCBOKM();
+        cboKM.setSelectedIndex(-1);
     }
 
+    private void fillCBOKM() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboKM.getModel();
+        model.removeAllElements();
+        List<Loai> list = daoLoai.selectAll();
+        for (Loai l : list) {
+            model.addElement(l);
+        }
+    }
+    private void fillTableKM() {
+        try {
+            String header[] = {"Mã KM", "Tên KM","Mã Loại KM", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị khuyến mãi"};
+            DefaultTableModel model = new DefaultTableModel(header, 0);
+            tblKhuyenMai.setModel(model);
+            Loai loai =  (Loai) cboKM.getSelectedItem();
+            List<KhuyenMai> list;
+            if(loai == null)
+                list = daoKM.selectAll();
+            else
+                list = daoKM.selectByMaLoai(loai.getMaLoai());
+            for (KhuyenMai km : list) {
+                Object[] row = {
+                    km.getMaKM(),
+                    km.getTenKM(),
+                    km.getMaLoaiKM(),
+                    km.getNgayBatDau(),
+                    km.getNgayKetThuc(),
+                    km.getPhanTram()};
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            XMessage.alert(this, "Lỗi truy vấn");
+        }
+    }
     void fillTable() {
         try {
             String header[] = {"Mã KM", "Tên KM","Mã Loại KM", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị khuyến mãi"};
@@ -386,7 +417,7 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
                 model.addRow(row);
             }
         } catch (Exception e) {
-            Message.alert(this, "Lỗi truy vấn");
+            XMessage.alert(this, "Lỗi truy vấn");
         }
     }
 
@@ -406,9 +437,9 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
             daoKM.insert(model);
             this.fillTable();
             this.clearForm();
-            Message.alert(this, "Thêm dữ liệu thành công");
+            XMessage.alert(this, "Thêm dữ liệu thành công");
         } catch (Exception e) {
-            Message.alert(this, "Lỗi dữ liệu");
+            XMessage.alert(this, "Lỗi dữ liệu");
             e.printStackTrace();
         }
     }
@@ -419,10 +450,10 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
             daoKM.delete(model.getMaKM());
             this.fillTable();
             this.clearForm();
-            Message.alert(this, "Xoá thành công");
+            XMessage.alert(this, "Xoá thành công");
         } catch (Exception e) {
             // TODO: handle exception
-            Message.alert(this, "Xóa thất bại");
+            XMessage.alert(this, "Xóa thất bại");
             e.printStackTrace();
         }
     }
@@ -433,9 +464,9 @@ public class KhuyenMaiPanel extends javax.swing.JPanel {
             daoKM.update(model);
             this.fillTable();
             this.clearForm();
-            Message.alert(this, "Cập nhật thành công");
+            XMessage.alert(this, "Cập nhật thành công");
         } catch (Exception e) {
-            Message.alert(this, "Cập nhật thất bại");
+            XMessage.alert(this, "Cập nhật thất bại");
             e.printStackTrace();
         }
     }

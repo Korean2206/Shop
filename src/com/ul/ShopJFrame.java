@@ -5,18 +5,11 @@
 package com.ul;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.SwingUtilities;
-
 import com.utils.Auth;
 import com.utils.Hover;
 import com.utils.TabbedPane;
@@ -407,6 +400,7 @@ public class ShopJFrame extends javax.swing.JFrame {
         new LoginJDialog(this,true).setVisible(true);
         setTenNV();
         manager();
+        SanPhamPanel.showBtnThemLoai();
     }//GEN-LAST:event_btnDangXuatMouseClicked
 
     private void btnDangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangXuatMouseEntered
@@ -520,6 +514,7 @@ public class ShopJFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Secondhand Shop");
+        SanPhamPanel.showBtnThemLoai();
         setIconApp();
         showClock();
         setTenNV();

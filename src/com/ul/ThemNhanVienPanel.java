@@ -4,19 +4,15 @@
  */
 package com.ul;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-
 import com.DAO.NhanVienDAO;
 import com.entity.NhanVien;
 import com.utils.Auth;
-import com.utils.Message;
+import com.utils.XMessage;
 import com.utils.XDate;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 
@@ -477,7 +473,7 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-            Message.alert(this, "Lỗi truy vấn dữ liệu!");
+            XMessage.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
 
@@ -561,32 +557,32 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
                 dao.insert(model);
                 this.fillTable();
                 this.clearForm();
-                Message.alert(this, "Thêm mới thành công!");
+                XMessage.alert(this, "Thêm mới thành công!");
             } else {
-                Message.alert(this, "Bạn cần nhập đủ thông tin!");
+                XMessage.alert(this, "Bạn cần nhập đủ thông tin!");
             }
         } catch (Exception e) {
-            Message.alert(this, "Thêm mới thất bại!");
+            XMessage.alert(this, "Thêm mới thất bại!");
             e.printStackTrace();
         }
     }
 
     private void delete() {
         if (!Auth.isManager()) {
-            Message.alert(this, "Bạn không có quyền xóa Nhân viên!");
+            XMessage.alert(this, "Bạn không có quyền xóa Nhân viên!");
         } else {
             NhanVien nv = getForm();
             if (Auth.user.getMaNV().equals(nv.getMaNV())) {
-                Message.alert(this, "Bạn không được xóa chính bạn!");
+                XMessage.alert(this, "Bạn không được xóa chính bạn!");
             }
-            if (Message.confirm(this, "Bạn có muốn xóa hay không?")) {
+            if (XMessage.confirm(this, "Bạn có muốn xóa hay không?")) {
                 try {
                     dao.delete(nv.getMaNV());
                     this.fillTable();
                     this.clearForm();
-                    Message.alert(this, "Xóa thành công!");
+                    XMessage.alert(this, "Xóa thành công!");
                 } catch (Exception e) {
-                    Message.alert(this, "Xóa thất bại!");
+                    XMessage.alert(this, "Xóa thất bại!");
                     e.printStackTrace();
                 }
             }
@@ -615,9 +611,9 @@ public class ThemNhanVienPanel extends javax.swing.JPanel {
         try {
             dao.update(model);
             this.fillTable();
-            Message.alert(this, "Cập nhật thành công!");
+            XMessage.alert(this, "Cập nhật thành công!");
         } catch (Exception e) {
-            Message.alert(this, "Cập nhật thất bại!");
+            XMessage.alert(this, "Cập nhật thất bại!");
             e.printStackTrace();
         }
     }

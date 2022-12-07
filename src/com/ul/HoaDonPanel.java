@@ -3,21 +3,18 @@ package com.ul;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import com.DAO.HDCTDAO;
 import com.DAO.HoaDonDAO;
 import com.DAO.KhachHangDAO;
 import com.DAO.KhuyenMaiDAO;
-import com.DAO.SanPhamDAO;
 import com.entity.HDCT;
 import com.entity.HoaDon;
 import com.entity.KhachHang;
-import com.entity.KhuyenMai;
 import com.entity.SanPham;
 import com.utils.Auth;
-import com.utils.Message;
+import com.utils.XMessage;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -229,6 +226,9 @@ public class HoaDonPanel extends javax.swing.JPanel {
         DoanhThuPanel.tienHN();
         DoanhThuPanel.tienTuan();
         DoanhThuPanel.tienThang();
+        DoanhThuPanel.fillTable();
+        TKSanPhamPanel.fillTable();
+        TKHoaDonPanel.fillTableHD();
         
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
@@ -425,10 +425,10 @@ public class HoaDonPanel extends javax.swing.JPanel {
             BanHangPanel.fillTableKH();
             BanHangPanel.fillTableSP();
             clearForm();
-            Message.alert(this, "Đã thanh toán");
+            XMessage.alert(this, "Đã thanh toán");
         }catch (Exception e) {
             e.printStackTrace();
-            Message.alert(this, "Thanh toán thất bại");
+            XMessage.alert(this, "Thanh toán thất bại");
         }
 
     }

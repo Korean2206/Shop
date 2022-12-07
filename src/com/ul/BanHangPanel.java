@@ -8,28 +8,18 @@ package com.ul;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
-import javax.swing.JDialog;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-
-import com.DAO.HoaDonDAO;
 import com.DAO.KhachHangDAO;
 import com.DAO.KhuyenMaiDAO;
-import com.DAO.HDCTDAO;
 import com.DAO.SanPhamDAO;
-import com.entity.HDCT;
-import com.entity.HoaDon;
 import com.entity.KhachHang;
 import com.entity.SanPham;
-import com.ul.HoaDonPanel;
-import com.utils.Message;
+import com.utils.XMessage;
 
 /**
  *
@@ -267,15 +257,11 @@ public class BanHangPanel extends javax.swing.JPanel {
         try {
             List<SanPham> list = daoSP.selectAll();
             for (SanPham sp : list) {
-                if (sp.getTrangThai().equalsIgnoreCase("Còn hàng")) {
                     Object[] row = {
                             sp.getMaSP(), sp.getTenSP(), sp.getMaLoai(), sp.getSize(), sp.getTrangThai(),
-                            sp.getSoLuong(), sp.getHinhAnh()
-                    };
+                            sp.getSoLuong(), sp.getHinhAnh()};
                     model.addRow(row);
-                }
-                ;
-            }
+            }   
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -294,8 +280,12 @@ public class BanHangPanel extends javax.swing.JPanel {
                 row = tblSanPham.getSelectedRow();
                 String maSP = (String) tblSanPham.getValueAt(row, 0);
                 SanPham sp = daoSP.selectByID(maSP);
-                listSP.add(sp);
-                fillTableSL(listSP);
+                if(sp.getTrangThai().equalsIgnoreCase("Hết hàng")){
+                    XMessage.alert(BanHangPanel.this, "Sản phẩm đã hết hàng");
+                }else{
+                    listSP.add(sp);
+                    fillTableSL(listSP);
+                }
                 HoaDonPanel.txtTongTien.setText("" + HoaDonPanel.getTongTien());
 
             }
@@ -303,6 +293,7 @@ public class BanHangPanel extends javax.swing.JPanel {
         popupMenu.add(addItem);
         tblSanPham.setComponentPopupMenu(popupMenu);
     }
+    
     private void chonKH() {
         final JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem addItem = new JMenuItem("Chọn khách hàng");
