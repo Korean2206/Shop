@@ -69,6 +69,30 @@ public class HDCTDAO extends ShopFrameDAO<HDCT,Integer> {
         return list;
     }
 
+    public List<Object[]> getTTHD(int maHD) {
+        String sql = "{CALL sp_showTTHD(?)}";
+        String[] columns = {"maSP","TenSP","soLuong","DonGia"};
+        return this.getListofArrayList(sql, columns,maHD);
+    }
+    private List<Object[]> getListofArrayList(String sql, String[] columns, Object... args) {
+        try {
+                List<Object[]> list = new ArrayList<Object[]>();
+                ResultSet rs = Jdbc.query(sql, args);
+                while (rs.next()) {
+                    Object[] vals = new Object[columns.length];
+                    for(int i = 0; i < vals.length; i++){
+                        vals[i] = rs.getObject(columns[i]);
+                    }
+                    list.add(vals);
+                }
+                return list;
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return null;
+            }
+    }
+
     @Override
     public HDCT selectByID(Integer key) {
         // TODO Auto-generated method stub

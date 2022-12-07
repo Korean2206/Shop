@@ -46,7 +46,6 @@
                                   <Component id="dcTo" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                                   <Component id="dcFrom" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                                   <Component id="btnLoc" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnXuatTK" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -77,8 +76,6 @@
                       <Component id="dcTo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnLoc" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnXuatTK" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -281,11 +278,6 @@
     <Component class="com.toedter.calendar.JDateChooser" name="dcFrom">
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dcTo">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnXuatTK">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t TK"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

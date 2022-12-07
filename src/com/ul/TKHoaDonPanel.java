@@ -7,13 +7,10 @@ package com.ul;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
-
-import com.DAO.HoaDonDAO;
 import com.DAO.ThongKeDAO;
-import com.entity.HoaDon;
 import com.utils.XMessage;
-import com.utils.XDate;
 
 /**
  *
@@ -41,7 +38,11 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblHoaDon = new javax.swing.JTable();
+        tblHoaDon = new javax.swing.JTable(){
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                return false;
+            }
+        };
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         dcTo = new com.toedter.calendar.JDateChooser();
@@ -53,7 +54,6 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
         cboPttt = new javax.swing.JComboBox<>();
         txtMaKH = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        btnXuatTK = new javax.swing.JButton();
         btnLoc = new javax.swing.JButton();
 
         jLabel1.setText("Danh sách hóa đơn chi tiết :");
@@ -109,13 +109,6 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Phương thức thanh toán :");
 
-        btnXuatTK.setText("Xuất TK");
-        btnXuatTK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXuatTKActionPerformed(evt);
-            }
-        });
-
         btnLoc.setText("Lọc");
         btnLoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,9 +143,7 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnXuatTK)
-                            .addComponent(btnLoc))
+                        .addComponent(btnLoc)
                         .addGap(31, 31, 31))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,10 +159,8 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
                     .addComponent(btnLoc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dcTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(btnXuatTK))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cboTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,7 +171,7 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -216,11 +205,17 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         // TODO add your handling code here:
+        if(evt.getClickCount() == 2) {
+            try {
+                HDCTJDIalog.maHD = getMaHD(tblHoaDon.getSelectedRow());
+                new HDCTJDIalog(null, true).setVisible(true);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+                XMessage.alert(this, "Lỗi");
+            }
+        }
     }//GEN-LAST:event_tblHoaDonMouseClicked
-
-    private void btnXuatTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatTKActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnXuatTKActionPerformed
 
     private void cboTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTTActionPerformed
         // TODO add your handling code here:
@@ -254,7 +249,6 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoc;
-    private javax.swing.JButton btnXuatTK;
     private static javax.swing.JComboBox<String> cboPttt;
     private static javax.swing.JComboBox<String> cboTT;
     private com.toedter.calendar.JDateChooser dcFrom;
@@ -277,6 +271,9 @@ public class TKHoaDonPanel extends javax.swing.JPanel {
         cboPttt.setSelectedIndex(-1);
         fillTableHD();
 
+    }
+    public int getMaHD(int row) {
+        return (int) tblHoaDon.getValueAt(row, 1);
     }
 
     private void fillCBOTT() {

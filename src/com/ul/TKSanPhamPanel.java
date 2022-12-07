@@ -40,7 +40,6 @@ public class TKSanPhamPanel extends javax.swing.JPanel {
         tblSanPham = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnXuatTK = new javax.swing.JButton();
         cboTT = new javax.swing.JComboBox<>();
         cboLoaiSP = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -58,13 +57,6 @@ public class TKSanPhamPanel extends javax.swing.JPanel {
             }
         ));
         jScrollPane1.setViewportView(tblSanPham);
-
-        btnXuatTK.setText("Xuất TK");
-        btnXuatTK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXuatTKActionPerformed(evt);
-            }
-        });
 
         cboTT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboTT.addActionListener(new java.awt.event.ActionListener() {
@@ -93,9 +85,7 @@ public class TKSanPhamPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnXuatTK)
-                        .addGap(45, 45, 45))
+                        .addGap(45, 300, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,10 +100,8 @@ public class TKSanPhamPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cboLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(btnXuatTK))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cboTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -146,7 +134,7 @@ public class TKSanPhamPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -165,7 +153,6 @@ public class TKSanPhamPanel extends javax.swing.JPanel {
     }// GEN-LAST:event_btnXuatTKActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnXuatTK;
     private static javax.swing.JComboBox<String> cboLoaiSP;
     private static javax.swing.JComboBox<String> cboTT;
     private javax.swing.JLabel jLabel3;

@@ -76,6 +76,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblHoaDonMouseClicked"/>
           </Events>
           <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xa;public boolean editCellAt(int row, int column, java.util.EventObject e) {&#xa;        return false;&#xa;    }&#xa;}"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
           </AuxValues>
         </Component>
@@ -114,10 +115,7 @@
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnXuatTK" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnLoc" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnLoc" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -138,11 +136,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="dcTo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnXuatTK" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cboTT" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -153,7 +148,7 @@
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtMaKH" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -234,14 +229,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng th&#x1ee9;c thanh to&#xe1;n :"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnXuatTK">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t TK"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXuatTKActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLoc">
           <Properties>

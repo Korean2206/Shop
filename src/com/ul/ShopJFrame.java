@@ -124,6 +124,12 @@ public class ShopJFrame extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSanPhamMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSanPhamMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSanPhamMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnSanPhamMousePressed(evt);
             }
@@ -154,6 +160,12 @@ public class ShopJFrame extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnKhuyenMaiMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnKhuyenMaiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnKhuyenMaiMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnKhuyenMaiMousePressed(evt);
             }
@@ -169,23 +181,25 @@ public class ShopJFrame extends javax.swing.JFrame {
         btnKhuyenMai.setLayout(btnKhuyenMaiLayout);
         btnKhuyenMaiLayout.setHorizontalGroup(
             btnKhuyenMaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnKhuyenMaiLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+            .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         btnKhuyenMaiLayout.setVerticalGroup(
             btnKhuyenMaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnKhuyenMaiLayout.createSequentialGroup()
+            .addGroup(btnKhuyenMaiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
         );
 
         btnBanHang.setBackground(new java.awt.Color(255, 204, 204));
         btnBanHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBanHangMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBanHangMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBanHangMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnBanHangMousePressed(evt);
@@ -216,6 +230,12 @@ public class ShopJFrame extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnThemNhanVienMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnThemNhanVienMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnThemNhanVienMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnThemNhanVienMousePressed(evt);
             }
@@ -245,6 +265,12 @@ public class ShopJFrame extends javax.swing.JFrame {
         btnThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnThongKeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnThongKeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnThongKeMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnThongKeMousePressed(evt);
@@ -310,6 +336,12 @@ public class ShopJFrame extends javax.swing.JFrame {
         lblTenNV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblTenNVMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblTenNVMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblTenNVMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lblTenNVMousePressed(evt);
@@ -405,15 +437,85 @@ public class ShopJFrame extends javax.swing.JFrame {
 
     private void btnDangXuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangXuatMouseEntered
         // TODO add your handling code here:
-        h.changeCursor(true, btnDangXuat);
+        h.changeCursorRED(true, btnDangXuat);
 
     }//GEN-LAST:event_btnDangXuatMouseEntered
 
     private void btnDangXuatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangXuatMouseExited
         // TODO add your handling code here:
-        h.changeCursor(false, btnDangXuat);
+        h.changeCursorRED(false, btnDangXuat);
 
     }//GEN-LAST:event_btnDangXuatMouseExited
+
+    private void lblTenNVMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTenNVMouseEntered
+        // TODO add your handling code here:
+        h.changeCursor(true, lblTenNV);
+    }//GEN-LAST:event_lblTenNVMouseEntered
+
+    private void lblTenNVMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTenNVMouseExited
+        // TODO add your handling code here:
+        h.changeCursor(false, lblTenNV);
+
+    }//GEN-LAST:event_lblTenNVMouseExited
+
+    private void btnSanPhamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSanPhamMouseEntered
+        // TODO add your handling code here:
+        h.changeCursor(true, label2);
+    }//GEN-LAST:event_btnSanPhamMouseEntered
+
+    private void btnSanPhamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSanPhamMouseExited
+        // TODO add your handling code here:
+        h.changeCursor(false, label2);
+
+    }//GEN-LAST:event_btnSanPhamMouseExited
+
+    private void btnKhuyenMaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhuyenMaiMouseEntered
+        // TODO add your handling code here:
+        h.changeCursor(true, label3);
+
+    }//GEN-LAST:event_btnKhuyenMaiMouseEntered
+
+    private void btnKhuyenMaiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhuyenMaiMouseExited
+        // TODO add your handling code here:
+        h.changeCursor(false, label3);
+
+    }//GEN-LAST:event_btnKhuyenMaiMouseExited
+
+    private void btnBanHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseEntered
+        // TODO add your handling code here:
+        h.changeCursor(true, label1);
+
+    }//GEN-LAST:event_btnBanHangMouseEntered
+
+    private void btnBanHangMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseExited
+        // TODO add your handling code here:
+        h.changeCursor(false, label1);
+
+    }//GEN-LAST:event_btnBanHangMouseExited
+
+    private void btnThemNhanVienMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemNhanVienMouseEntered
+        // TODO add your handling code here:
+        h.changeCursor(true, label5);
+
+    }//GEN-LAST:event_btnThemNhanVienMouseEntered
+
+    private void btnThemNhanVienMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemNhanVienMouseExited
+        // TODO add your handling code here:
+        h.changeCursor(false, label5);
+
+    }//GEN-LAST:event_btnThemNhanVienMouseExited
+
+    private void btnThongKeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongKeMouseEntered
+        // TODO add your handling code here:
+        h.changeCursor(true, label4);
+
+    }//GEN-LAST:event_btnThongKeMouseEntered
+
+    private void btnThongKeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongKeMouseExited
+        // TODO add your handling code here:
+        h.changeCursor(false, label4);
+
+    }//GEN-LAST:event_btnThongKeMouseExited
 
     private void btnKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnKhuyenMaiMouseClicked
         // TODO add your handling code here:

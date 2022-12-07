@@ -53,7 +53,6 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         lblDaBanHN = new javax.swing.JLabel();
         dcFrom = new com.toedter.calendar.JDateChooser();
         dcTo = new com.toedter.calendar.JDateChooser();
-        btnXuatTK = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -168,8 +167,6 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                 .addComponent(lblDaBanHN)
                 .addContainerGap(63, Short.MAX_VALUE))
         );
-
-        btnXuatTK.setText("Xuất TK");
 
         jLabel1.setText("Từ :");
 
@@ -295,8 +292,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(dcTo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dcFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnLoc)
-                                    .addComponent(btnXuatTK))
+                                    .addComponent(btnLoc))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
@@ -318,9 +314,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dcTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLoc)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnXuatTK)))
+                        .addComponent(btnLoc)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -495,7 +489,6 @@ public class DoanhThuPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoc;
-    private javax.swing.JButton btnXuatTK;
     private static javax.swing.JComboBox<String> cboLoai;
     private com.toedter.calendar.JDateChooser dcFrom;
     private com.toedter.calendar.JDateChooser dcTo;
