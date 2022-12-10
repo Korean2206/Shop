@@ -11,6 +11,7 @@ public class SanPham {
     private String hinhAnh;
     private String moTa;
     private String maNV;
+    private String qrCode;
 
     public String getMaSP() {
         return this.maSP;
@@ -18,6 +19,13 @@ public class SanPham {
 
     public void setMaSP(String maSP) {
         this.maSP = maSP;
+    }
+    public String getQrCode() {
+        return this.qrCode;
+    }
+
+    public void setQrCode(String qrCode) {
+        this.qrCode = qrCode;
     }
 
     public String getTenSP() {

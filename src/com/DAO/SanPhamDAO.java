@@ -10,8 +10,8 @@ import com.utils.Jdbc;
 
 public class SanPhamDAO extends ShopFrameDAO<SanPham,String> {
 
-    private final String sqlInsert = "INSERT INTO SanPham values(?,?,?,?,?,?,?,?,?,?);";
-    private final String sqlUpdate = "UPDATE SanPham set TenSP=?,MaLoai=?,Size=?,TrangThai=?,GiaSP=?,SoLuong=?,HinhAnh=?,MoTa=?,MaNV=? where MaSP =?";
+    private final String sqlInsert = "INSERT INTO SanPham values(?,?,?,?,?,?,?,?,?,?,?);";
+    private final String sqlUpdate = "UPDATE SanPham set TenSP=?,MaLoai=?,Size=?,TrangThai=?,GiaSP=?,SoLuong=?,HinhAnh=?,MoTa=?,MaNV=?,qrCode=? where MaSP =?";
     private final String sqlDelete = "DELETE FROM SanPham where MaSP =?";
     private final String sqlSelectAll = "SELECT * FROM SanPham ";
     private final String sqlSelectByID = "SELECT * FROM SanPham where MaSP =?";
@@ -32,7 +32,7 @@ public class SanPhamDAO extends ShopFrameDAO<SanPham,String> {
     public void update(SanPham entity) {
         // TODO Auto-generated method stub
         try {
-            Jdbc.update(sqlUpdate,entity.getTenSP(),entity.getMaLoai(),entity.getSize(),entity.getTrangThai(),entity.getGiaSP(),entity.getSoLuong(),entity.getHinhAnh(),entity.getMoTa(),entity.getMaNV(),entity.getMaSP());
+            Jdbc.update(sqlUpdate,entity.getTenSP(),entity.getMaLoai(),entity.getSize(),entity.getTrangThai(),entity.getGiaSP(),entity.getSoLuong(),entity.getHinhAnh(),entity.getMoTa(),entity.getMaNV(),entity.getQrCode(),entity.getMaSP());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -56,6 +56,12 @@ public class SanPhamDAO extends ShopFrameDAO<SanPham,String> {
         List<SanPham> list = new ArrayList<SanPham>();
         list = selectBySQL(sqlSelectAll);
         return list;
+    }
+    public SanPham selectByQrCode(String qrCode) {
+        String sql = "select * from SanPham where qrCode like ?";
+        List<SanPham> list = new ArrayList<SanPham>();
+        list = selectBySQL(sql,qrCode);
+        return list.get(0);
     }
 
     @Override
@@ -84,6 +90,7 @@ public class SanPhamDAO extends ShopFrameDAO<SanPham,String> {
             entity.setHinhAnh(rs.getString("HinhAnh"));
             entity.setMoTa(rs.getString("MoTa"));
             entity.setMaNV(rs.getString("MaNV"));
+            entity.setQrCode(rs.getString("qrCode"));
             list.add(entity);
            }
            rs.getStatement().getConnection().close();

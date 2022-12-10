@@ -2,6 +2,6 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "jcalendar-tz-1.3.3-4.jar",
-        "driver/sqljdbc42.jar"
+        "sqljdbc42.jar"
     ]
 }

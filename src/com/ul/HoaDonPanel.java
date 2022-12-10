@@ -65,6 +65,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
         txtTienThua = new javax.swing.JTextField();
         btnThanhToan = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
+        btnQuetQR = new javax.swing.JButton();
 
         jLabel2.setText("SĐT:");
 
@@ -133,47 +134,58 @@ public class HoaDonPanel extends javax.swing.JPanel {
             }
         });
 
+        btnQuetQR.setText("Quét QR");
+        btnQuetQR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuetQRActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtSDT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                .addComponent(txtTen, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtDiem, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(txtGhiChu)
-                            .addComponent(jLabel2))
-                        .addGap(109, 109, 109)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel8)
-                                .addComponent(txtTongTien)
-                                .addComponent(jLabel7)
-                                .addComponent(cboPttt, 0, 170, Short.MAX_VALUE)
-                                .addComponent(txtTienKhachTra)
-                                .addComponent(txtTienThua))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnThanhToan)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnHuy)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnQuetQR)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtSDT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                                    .addComponent(txtTen, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDiem, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(txtGhiChu)
+                                .addComponent(jLabel2))
+                            .addGap(109, 109, 109)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtTongTien)
+                                    .addComponent(jLabel7)
+                                    .addComponent(cboPttt, 0, 170, Short.MAX_VALUE)
+                                    .addComponent(txtTienKhachTra)
+                                    .addComponent(txtTienThua))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnThanhToan)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnHuy))))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(btnQuetQR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -249,9 +261,15 @@ public class HoaDonPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_txtTienKhachTraKeyReleased
 
+    private void btnQuetQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuetQRActionPerformed
+        // TODO add your handling code here:
+        new ReadQRCode(null,true).setVisible(true);;
+    }//GEN-LAST:event_btnQuetQRActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuy;
+    private javax.swing.JButton btnQuetQR;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JComboBox<String> cboPttt;
     private javax.swing.JLabel jLabel2;
@@ -280,7 +298,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
     private HoaDonDAO daoHD = new HoaDonDAO();
     private HDCTDAO daoHDCT = new HDCTDAO();
     private KhachHangDAO daoKH = new KhachHangDAO();
-    private KhuyenMaiDAO daoKM = new KhuyenMaiDAO();	
+    private static KhuyenMaiDAO daoKM = new KhuyenMaiDAO();	
     private void checkTien() {
         double tienThua = getTienThua();
         Color errorColor,defaultColor;
@@ -307,7 +325,7 @@ public class HoaDonPanel extends javax.swing.JPanel {
         }
 
     }
-    private void fillTableSL(List<SanPham> list) {
+    static void fillTableSL(List<SanPham> list) {
         Date now = new Date();
         String []header = {"Mã SP","Tên SP","Size","Đơn Giá","Giảm giá ","Số Lượng","Tổng tiền"};
         DefaultTableModel model = new DefaultTableModel(header,0);

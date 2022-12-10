@@ -8,8 +8,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-
-import com.ul.ForgotPassJDialog;
+import javax.swing.JFrame;
 
 public class XImage {
     
@@ -32,6 +31,11 @@ public class XImage {
     }
 
     public static void setIconApp(JDialog parent) {
+        URL iconUrl = parent.getClass().getResource("/com/image/icons8_adidas_trefoil_95px.png");
+        ImageIcon icon = new ImageIcon(iconUrl);
+        parent.setIconImage(icon.getImage());
+    }
+    public static void setIconApp(JFrame parent) {
         URL iconUrl = parent.getClass().getResource("/com/image/icons8_adidas_trefoil_95px.png");
         ImageIcon icon = new ImageIcon(iconUrl);
         parent.setIconImage(icon.getImage());

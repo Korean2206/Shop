@@ -18,6 +18,7 @@ import com.entity.Loai;
 import com.entity.SanPham;
 import com.utils.XImage;
 import com.utils.Auth;
+import com.utils.WriteQRCode;
 import com.utils.XMessage;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
@@ -587,7 +588,10 @@ public class SanPhamPanel extends javax.swing.JPanel {
     private void insert() {
         SanPham sp = getForm();
         try {
+            String path = getPath(sp.getMaSP(),sp.getTenSP());
+            sp.setQrCode(path);
             daoSP.insert(sp); // thêm mới
+            createQRCode();
             this.fillTable(); // đỗ lại bảng
             this.clearForm(); // xóa trắng form
             BanHangPanel.fillTableSP();
@@ -601,7 +605,10 @@ public class SanPhamPanel extends javax.swing.JPanel {
     private void update() {
         SanPham model = getForm();
         try {
+            String path = getPath(model.getMaSP(),model.getTenSP());
+            model.setQrCode(path);
             daoSP.update(model);
+            createQRCode();
             this.fillTable();
             BanHangPanel.fillTableSP();
             XMessage.alert(this, "Update thành công");
@@ -659,5 +666,22 @@ public class SanPhamPanel extends javax.swing.JPanel {
     private ImageIcon setSizeIcon(String fileName) {
         return new ImageIcon(XImage.read(fileName).getImage().getScaledInstance(lblImage.getWidth(),
                 lblImage.getHeight(), Image.SCALE_SMOOTH));
+    }
+
+    private String getPath(String id,String name) {
+        return "D:\\HomeWork\\Project1\\Shop\\QrCode\\" + id + "_" + name +".png";
+    }
+    
+
+    private void createQRCode() {
+        try {
+            String id = txtMaSP.getText().trim();
+            String name = txtTenSP.getText().trim();
+            String path = getPath(id,name);
+            WriteQRCode.writeQrCode(id, name,path);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
     }
 }
